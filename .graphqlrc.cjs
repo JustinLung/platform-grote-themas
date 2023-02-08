@@ -38,7 +38,7 @@ module.exports = {
 						preResolveTypes: true
 					}
 				},
-				'./lib/generated/schema.graphql': {
+				'./src/lib/graphql/generated/schema.graphql': {
 					// for developer lookup (unused)
 					plugins: ['schema-ast']
 				}
