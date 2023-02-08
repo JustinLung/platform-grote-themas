@@ -1,0 +1,4 @@
+## Placeholder query
+query MyQuery {
+	__typename ## Placeholder value
+}
