@@ -6,13 +6,13 @@
 <header>
 	<div>
 		<img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" />
-		<nav>Hva / Informatie / Werkvormen & thema's {navTitle}</nav>
+		<div>Hva / Informatie / Werkvormen & thema's {navTitle}</div>
 		<h1>{siteTitle}</h1>
 		<p>
 			Hier vind je alle werkvormen en thema’s die je kunt bekijken en materiaal van kan downloaden.
 		</p>
 	</div>
-	<img src="/assets/images/hva-triangle.svg" alt="HvA Triangle" class="graphic" />
+	<img src="/assets/images/hva-triangle.svg" alt="" class="graphic" />
 </header>
 
 <style>
@@ -24,7 +24,7 @@
 		padding: 2rem;
 	}
 
-	nav {
+	div {
 		padding: 1rem 0;
 	}
 
