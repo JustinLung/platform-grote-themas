@@ -1,21 +1,20 @@
 <script lang="ts">
-	import ArrowIcon from './icons/ArrowIcon.svelte';
-
-	export let werkvormTitle: string;
-	export let werkvormDescription: string;
-	export let werkvormImage: string = '/assets/images/placeholder.png';
-	export let werkvormLink: string;
+	import ArrowIcon from '$lib/icons/arrow.svg?component';
+	export let title: string;
+	export let description: string;
+	export let image: string = '/assets/images/placeholder.png';
+	export let link: string;
 </script>
 
 <article>
 	<figure>
-		<img src={werkvormImage} alt={werkvormTitle} />
+		<img src={image} alt={title} />
 	</figure>
 	<section>
-		<h3>{werkvormTitle}</h3>
-		<p>{werkvormDescription}</p>
-		<a href={werkvormLink} class="werkvorm-link"><ArrowIcon />Bekijk werkvorm</a>
-		<a href={werkvormLink} class="werkvorm-link"><ArrowIcon />Bekijk Introvideo</a>
+		<h3>{title}</h3>
+		<p>{description}</p>
+		<a href={link} class="werkvorm-link"><ArrowIcon />Bekijk werkvorm</a>
+		<a href={link} class="werkvorm-link"><ArrowIcon />Bekijk Introvideo</a>
 		<div>
 			<slot />
 		</div>
