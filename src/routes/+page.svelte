@@ -4,12 +4,12 @@
 </script>
 
 <Werkvorm
-	werkvormTitle="Naam van werkvorm"
-	werkvormDescription="1 regel bescrhijving werkvorm"
-	werkvormLink="/"
-	werkvormImage="/assets/images/placeholder.png"
+	title="Naam van werkvorm"
+	description="1 regel bescrhijving werkvorm"
+	link="/"
+	image="/assets/images/placeholder.png"
 >
-	<Tag tagTitle="Ik" tagColor="var(--color-hva-light-blue)" tagLink="/" />
-	<Tag tagTitle="Persoonlijke Intresses" tagColor="var(--color-hva-red)" tagLink="/" />
-	<Tag tagTitle="Duurzaamheid" tagColor="var(--color-hva-teal)" tagLink="/" />
+	<Tag title="Ik" color="var(--color-hva-light-blue)" link="/" />
+	<Tag title="Persoonlijke Intresses" color="var(--color-hva-red)" link="/" />
+	<Tag title="Duurzaamheid" color="var(--color-hva-teal)" link="/" />
 </Werkvorm>

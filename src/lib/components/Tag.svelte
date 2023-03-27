@@ -1,10 +1,10 @@
 <script lang="ts">
-	export let tagLink: string;
-	export let tagTitle: string;
-	export let tagColor: string;
+	export let link: string;
+	export let title: string;
+	export let color: string;
 </script>
 
-<a href={tagLink} style={`border-color: ${tagColor}`}><span>{tagTitle}</span></a>
+<a href={link} style={`border-color: ${color}`}><span>{title}</span></a>
 
 <style>
 	a {
