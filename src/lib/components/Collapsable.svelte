@@ -1,45 +1,45 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-	import { backOut } from 'svelte/easing';
-	let collapsable = false;
+	let content: HTMLElement;
+	let collapsed = true;
 
 	export let title: string;
 
 	function toggleCollapsable() {
-		collapsable = !collapsable;
+		collapsed = !collapsed;
 	}
 </script>
 
-<div style={collapsable ? `margin-bottom: 0` : `margin-bottom: 1rem`}>
-	<button on:click={toggleCollapsable}>{title}</button>
-</div>
-{#if collapsable}
-	<nav
-		in:fly={{
-			y: -20
-		}}
-		out:fly={{
-			y: -20
-		}}
-	>
+<button on:click={toggleCollapsable}>{title}</button>
+<div class="content {!collapsed && 'open'}" style="--mh: {content?.clientHeight}px">
+	<nav bind:this={content}>
 		<slot />
 	</nav>
-{/if}
+</div>
 
 <style>
-	div {
-		background-color: var(--color-navy-blue);
-		padding: 1.5rem;
-		cursor: pointer;
+	.content.open {
+		max-height: var(--mh);
+	}
+
+	.content {
+		max-height: 0vh;
+		overflow: hidden;
+		transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+		position: relative;
 	}
 
 	button {
 		cursor: pointer;
-		all: unset;
+		display: flex;
+		color: var(--white);
+		border: none;
 		padding: 0;
 		margin: 0;
 		font-weight: bold;
 		width: 100%;
+		background-color: var(--color-navy-blue);
+		padding: 1.5rem;
+		font-size: 1rem;
 	}
 
 	nav {
@@ -48,6 +48,5 @@
 		gap: 0.5rem;
 		background-color: var(--color-navy-blue);
 		padding: 0 1.5rem 1.5rem;
-		margin-bottom: 1rem;
 	}
 </style>
