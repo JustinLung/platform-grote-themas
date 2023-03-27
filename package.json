@@ -11,7 +11,7 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"generate-graphql": "graphql-codegen -r dotenv/config",
-    "watch-graphql": "graphql-codegen --watch -r dotenv/config"
+		"watch-graphql": "graphql-codegen --watch -r dotenv/config"
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "^3.0.0",
@@ -20,6 +20,7 @@
 		"@graphql-codegen/typescript": "^3.0.0",
 		"@graphql-codegen/typescript-graphql-request": "^4.5.8",
 		"@graphql-codegen/typescript-operations": "^3.0.0",
+		"@poppanator/sveltekit-svg": "^3.0.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
