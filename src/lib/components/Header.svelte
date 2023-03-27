@@ -16,6 +16,9 @@
 </header>
 
 <style>
+	header > div {
+		padding: 2rem 2rem 0;
+	}
 	img:first-child {
 		max-width: 10rem;
 	}
