@@ -4,6 +4,8 @@
 	import WerkvormSection from '$lib/components/WerkvormSection.svelte';
 	import Tag from '$lib/components/Tag.svelte';
 	import Werkvorm from '$lib/components/Werkvorm.svelte';
+	import Video from '$lib/components/Video.svelte';
+	import AspectRatio from '$lib/components/AspectRatio.svelte';
 
 	// TODO: change title and links
 	const focus = [
@@ -47,6 +49,12 @@
 	];
 </script>
 
+<!-- Temporary for video showcase -->
+<div style="max-width: 40rem">
+	<AspectRatio ratio={16 / 9}>
+		<Video />
+	</AspectRatio>
+</div>
 <div>
 	<Sidebar>
 		<Collapsable title="Onderwerp">
