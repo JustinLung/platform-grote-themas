@@ -25,7 +25,6 @@
 	article {
 		display: flex;
 		gap: 2rem;
-		max-width: 45rem;
 	}
 
 	figure {

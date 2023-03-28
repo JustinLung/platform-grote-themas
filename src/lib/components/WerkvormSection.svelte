@@ -6,9 +6,6 @@
 </section>
 
 <style>
-	section {
-		padding: 2rem;
-	}
 	h2 {
 		font-size: 2rem;
 	}
@@ -21,7 +18,7 @@
 
 	@media (max-width: 55rem) {
 		section {
-			padding: 1rem 1rem 0;
+			padding-bottom: 2rem;
 		}
 	}
 </style>
