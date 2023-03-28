@@ -4,47 +4,7 @@
 	import WerkvormSection from '$lib/components/WerkvormSection.svelte';
 	import Tag from '$lib/components/Tag.svelte';
 	import Werkvorm from '$lib/components/Werkvorm.svelte';
-
-	// TODO: change title and links
-	const focus = [
-		{
-			title: 'Lorem ipsum',
-			link: '/'
-		}
-	];
-
-	const doel = [
-		{
-			title: 'Lorem ipsum',
-			link: '/'
-		}
-	];
-
-	const onderwerpen = [
-		{
-			title: 'Duurzaamheid',
-			link: '/'
-		},
-		{
-			title: 'Diversiteit',
-			link: '/'
-		},
-		{
-			title: 'Digitalisering',
-			link: '/'
-		},
-		{
-			title: 'Democratie',
-			link: '/'
-		}
-	];
-
-	const fase = [
-		{
-			title: 'Lorem ipsum',
-			link: '/'
-		}
-	];
+	import { onderwerpen, focus, doel, fase } from '$lib/data/categories';
 </script>
 
 <div>
