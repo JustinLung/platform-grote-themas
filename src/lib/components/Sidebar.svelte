@@ -7,9 +7,6 @@
 </aside>
 
 <style>
-	aside {
-		max-width: 30rem;
-	}
 	h2 {
 		font-size: 2rem;
 	}
