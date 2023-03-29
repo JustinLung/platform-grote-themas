@@ -1,7 +1,8 @@
 <script lang="ts">
-	// import AspectRatio from './AspectRatio.svelte';
+	let video: HTMLVideoElement;
 </script>
 
-<video controls>
+<!-- svelte-ignore a11y-media-has-caption -->
+<video controls bind:this={video}>
 	<source src="/video/example.mp4" />
 </video>
