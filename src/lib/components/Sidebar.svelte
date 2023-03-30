@@ -1,8 +1,32 @@
+<script>
+	import Collapsable from './Collapsable.svelte';
+	import { onderwerpen, focus, doel, fase } from '$lib/data/categories';
+</script>
+
 <aside>
 	<h2>Zoeken</h2>
 	<input type="search" placeholder="Zoek op werkvormen en thema's" />
 	<div>
-		<slot />
+		<Collapsable title="Onderwerp">
+			{#each onderwerpen as onderwerp}
+				<a href={onderwerp.link}>{onderwerp.title}</a>
+			{/each}
+		</Collapsable>
+		<Collapsable title="Focus / Intentie">
+			{#each focus as focus}
+				<a href={focus.link}>{focus.title}</a>
+			{/each}
+		</Collapsable>
+		<Collapsable title="Doel">
+			{#each doel as doel}
+				<a href={doel.link}>{doel.title}</a>
+			{/each}
+		</Collapsable>
+		<Collapsable title="Fase">
+			{#each fase as fase}
+				<a href={fase.link}>{fase.title}</a>
+			{/each}
+		</Collapsable>
 	</div>
 </aside>
 
@@ -18,6 +42,11 @@
 		padding: 0.5rem 0;
 		width: 100%;
 		margin-bottom: 1rem;
+	}
+
+	a {
+		color: var(--color-white);
+		text-decoration: none;
 	}
 
 	@media (max-width: 55rem) {
