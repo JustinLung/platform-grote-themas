@@ -5,7 +5,7 @@ export const searchterm = writable('');
 
 export const werkvormenStore: Writable<WerkvormFragment[]> = writable([]);
 
-export const filteredWerkvormen = derived(searchterm, ($searchterm) => {
+export const filteredWerkvormen = derived([searchterm, werkvormenStore], ($searchterm) => {
 	const werkvormenArr = get(werkvormenStore);
 	if (!$searchterm) return werkvormenArr;
 	return werkvormenArr.filter((werkvorm) => {

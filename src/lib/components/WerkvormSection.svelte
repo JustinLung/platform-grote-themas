@@ -18,10 +18,11 @@
 			<p>Er zijn geen werkvormen gevonden met de zoekterm: {$searchterm}</p>
 		{:else}
 			{#each $filteredWerkvormen as werkvorm}
+				<!-- TODO: Slug from Hygraph -->
 				<Werkvorm
 					title={werkvorm.title}
 					description={werkvorm.beschrijving}
-					link="/"
+					link="/hier-komt-slug"
 					image={werkvorm.thumbnail.url}
 				>
 					<Tag title="Ik" color="var(--color-hva-light-blue)" link="/" />
