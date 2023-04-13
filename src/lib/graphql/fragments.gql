@@ -4,7 +4,5 @@ fragment Werkvorm on Werkvorm {
 	thumbnail {
 		url
 	}
-	tags {
-		titel
-	}
+	tags
 }
