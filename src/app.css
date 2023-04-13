@@ -1,21 +1,21 @@
 @font-face {
 	font-family: 'Open sans Light', sans-serif;
-	src: url('/assets/fonts/OpenSans/OpenSans-Light.ttf');
+	src: url('/assets/fonts/OpenSans/OpenSans-Light.ttf') format('ttf');
 }
 
 @font-face {
 	font-family: 'Open sans Medium', sans-serif;
-	src: url('/assets/fonts/OpenSans/OpenSans-Medium.ttf');
+	src: url('/assets/fonts/OpenSans/OpenSans-Medium.ttf') format('ttf');
 }
 
 @font-face {
 	font-family: 'Open sans Regular', sans-serif;
-	src: url('/assets/fonts/OpenSans/OpenSans-Regular.ttf');
+	src: url('/assets/fonts/OpenSans/OpenSans-Regular.ttf') format('ttf');
 }
 
 @font-face {
 	font-family: 'Open sans Bold', sans-serif;
-	src: url('/assets/fonts/OpenSans/OpenSans-Bold.ttf');
+	src: url('/assets/fonts/OpenSans/OpenSans-Bold.ttf') format('ttf');
 }
 
 :root {
