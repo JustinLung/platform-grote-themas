@@ -1,21 +1,17 @@
 <script lang="ts">
 	import type { WerkvormFragment } from '$lib/graphql/generated/sdk';
-	import { filteredWerkvormen, searchterm, werkvormenStore } from '../../state/filter';
+	import { filteredWerkvormen } from '../../state/filter';
 	import Tag from './Tag.svelte';
 	import Werkvorm from './Werkvorm.svelte';
 
 	export let werkvormen: WerkvormFragment[];
-
-	werkvormenStore.set(werkvormen);
 </script>
 
 <section>
 	<h2>Werkvormen</h2>
 	<div>
-		{#if !$filteredWerkvormen.length && !$searchterm}
+		{#if !werkvormen.length}
 			<p>Er zijn nog geen bestaande werkvormen</p>
-		{:else if !$filteredWerkvormen.length && $searchterm}
-			<p>Er zijn geen werkvormen gevonden met de zoekterm: {$searchterm}</p>
 		{:else}
 			{#each $filteredWerkvormen as werkvorm}
 				<!-- TODO: Slug from Hygraph -->
