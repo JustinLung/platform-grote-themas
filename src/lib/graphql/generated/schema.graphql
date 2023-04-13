@@ -9905,7 +9905,7 @@ input VersionWhereInput {
 "Model voor werkvormen\n"
 type Werkvorm implements Node {
   """Beschrijving voor de werkvorm"""
-  beschrijving: String
+  beschrijving: String!
   contactpersoon(
     """
     Sets the locale of the resolved parent document as the only locale in the query's subtree.
@@ -10161,7 +10161,7 @@ type Werkvorm implements Node {
     This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
     """
     locales: [Locale!]
-  ): Asset
+  ): Asset!
 
   """Tijdsduur van een werkvorm"""
   tijdsduur(
@@ -10187,7 +10187,7 @@ type Werkvorm implements Node {
   ): Tijdsduur
 
   """Titel voor de werkvorm"""
-  title: String
+  title: String!
 
   """The time the document was updated"""
   updatedAt: DateTime!
@@ -10280,7 +10280,7 @@ type WerkvormConnection {
 }
 
 input WerkvormCreateInput {
-  beschrijving: String
+  beschrijving: String!
   contactpersoon: ContactpersoonCreateOneInlineInput
   createdAt: DateTime
   faculteit: FaculteitCreateOneInlineInput
@@ -10288,9 +10288,9 @@ input WerkvormCreateInput {
   opleiding: OpleidingCreateOneInlineInput
   studiejaar: Int
   tags: TagCreateManyInlineInput
-  thumbnail: AssetCreateOneInlineInput
+  thumbnail: AssetCreateOneInlineInput!
   tijdsduur: TijdsduurCreateOneInlineInput
-  title: String
+  title: String!
   updatedAt: DateTime
   vak: VakCreateOneInlineInput
   video: AssetCreateOneInlineInput

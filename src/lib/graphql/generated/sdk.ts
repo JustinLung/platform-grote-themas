@@ -7391,7 +7391,7 @@ export type VersionWhereInput = {
 export type Werkvorm = Node & {
   __typename?: 'Werkvorm';
   /** Beschrijving voor de werkvorm */
-  beschrijving?: Maybe<Scalars['String']>;
+  beschrijving: Scalars['String'];
   contactpersoon?: Maybe<Contactpersoon>;
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
@@ -7419,11 +7419,11 @@ export type Werkvorm = Node & {
    * Thumbnail voor de werkvorm
    *
    */
-  thumbnail?: Maybe<Asset>;
+  thumbnail: Asset;
   /** Tijdsduur van een werkvorm */
   tijdsduur?: Maybe<Tijdsduur>;
   /** Titel voor de werkvorm */
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
@@ -7622,7 +7622,7 @@ export type WerkvormConnection = {
 };
 
 export type WerkvormCreateInput = {
-  beschrijving?: InputMaybe<Scalars['String']>;
+  beschrijving: Scalars['String'];
   contactpersoon?: InputMaybe<ContactpersoonCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   faculteit?: InputMaybe<FaculteitCreateOneInlineInput>;
@@ -7630,9 +7630,9 @@ export type WerkvormCreateInput = {
   opleiding?: InputMaybe<OpleidingCreateOneInlineInput>;
   studiejaar?: InputMaybe<Scalars['Int']>;
   tags?: InputMaybe<TagCreateManyInlineInput>;
-  thumbnail?: InputMaybe<AssetCreateOneInlineInput>;
+  thumbnail: AssetCreateOneInlineInput;
   tijdsduur?: InputMaybe<TijdsduurCreateOneInlineInput>;
-  title?: InputMaybe<Scalars['String']>;
+  title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   vak?: InputMaybe<VakCreateOneInlineInput>;
   video?: InputMaybe<AssetCreateOneInlineInput>;
@@ -8172,7 +8172,7 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
-export type WerkvormFragment = { __typename?: 'Werkvorm', title?: string | null, beschrijving?: string | null, thumbnail?: { __typename?: 'Asset', url: string } | null, tags: Array<{ __typename?: 'Tag', titel?: string | null }> };
+export type WerkvormFragment = { __typename?: 'Werkvorm', title: string, beschrijving: string, thumbnail: { __typename?: 'Asset', url: string }, tags: Array<{ __typename?: 'Tag', titel?: string | null }> };
 
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 

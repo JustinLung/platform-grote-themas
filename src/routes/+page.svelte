@@ -3,9 +3,6 @@
 	import WerkvormSection from '$lib/components/WerkvormSection.svelte';
 
 	export let data;
-
-	// TODO: Fill Hygraph with data so we can use it to render
-	console.log(data.werkvormen);
 </script>
 
 <section>
@@ -13,7 +10,7 @@
 		<Sidebar />
 	</div>
 	<div>
-		<WerkvormSection />
+		<WerkvormSection werkvormen={data.werkvormen.werkvormen} />
 	</div>
 </section>
 
@@ -21,7 +18,7 @@
 	section {
 		display: flex;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-start;
 		padding: 0 1.5rem;
 		width: 100%;
 		gap: 2rem;
