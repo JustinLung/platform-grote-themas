@@ -782,6 +782,7 @@ export type Categorie = Node & {
   scheduledIn: Array<ScheduledOperation>;
   /** System stage field */
   stage: Stage;
+  tags: Array<Tag>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
@@ -827,6 +828,19 @@ export type CategorieScheduledInArgs = {
 };
 
 
+export type CategorieTagsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<TagOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TagWhereInput>;
+};
+
+
 export type CategorieUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -852,6 +866,7 @@ export type CategorieConnection = {
 export type CategorieCreateInput = {
   categorieTitel?: InputMaybe<Scalars['String']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  tags?: InputMaybe<TagCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -964,6 +979,9 @@ export type CategorieManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  tags_every?: InputMaybe<TagWhereInput>;
+  tags_none?: InputMaybe<TagWhereInput>;
+  tags_some?: InputMaybe<TagWhereInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -997,6 +1015,7 @@ export enum CategorieOrderByInput {
 
 export type CategorieUpdateInput = {
   categorieTitel?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<TagUpdateManyInlineInput>;
 };
 
 export type CategorieUpdateManyInlineInput = {
@@ -1155,6 +1174,9 @@ export type CategorieWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  tags_every?: InputMaybe<TagWhereInput>;
+  tags_none?: InputMaybe<TagWhereInput>;
+  tags_some?: InputMaybe<TagWhereInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -1242,6 +1264,7 @@ export type Contactpersoon = Node & {
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
   voornaam?: Maybe<Scalars['String']>;
+  werkvormen: Array<Werkvorm>;
 };
 
 
@@ -1288,6 +1311,19 @@ export type ContactpersoonUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
+
+export type ContactpersoonWerkvormenArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<WerkvormOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WerkvormWhereInput>;
+};
+
 export type ContactpersoonConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
@@ -1310,6 +1346,7 @@ export type ContactpersoonCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   voornaam?: InputMaybe<Scalars['String']>;
+  werkvormen?: InputMaybe<WerkvormCreateManyInlineInput>;
 };
 
 export type ContactpersoonCreateManyInlineInput = {
@@ -1456,6 +1493,9 @@ export type ContactpersoonManyWhereInput = {
   voornaam_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   voornaam_starts_with?: InputMaybe<Scalars['String']>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 export enum ContactpersoonOrderByInput {
@@ -1476,6 +1516,7 @@ export enum ContactpersoonOrderByInput {
 export type ContactpersoonUpdateInput = {
   achternaam?: InputMaybe<Scalars['String']>;
   voornaam?: InputMaybe<Scalars['String']>;
+  werkvormen?: InputMaybe<WerkvormUpdateManyInlineInput>;
 };
 
 export type ContactpersoonUpdateManyInlineInput = {
@@ -1670,6 +1711,9 @@ export type ContactpersoonWhereInput = {
   voornaam_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   voornaam_starts_with?: InputMaybe<Scalars['String']>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -1779,6 +1823,7 @@ export type Faculteit = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+  werkvormen: Array<Werkvorm>;
 };
 
 
@@ -1825,6 +1870,19 @@ export type FaculteitUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
+
+export type FaculteitWerkvormenArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<WerkvormOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WerkvormWhereInput>;
+};
+
 export type FaculteitConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
@@ -1846,6 +1904,7 @@ export type FaculteitCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   titel?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+  werkvormen?: InputMaybe<WerkvormCreateManyInlineInput>;
 };
 
 export type FaculteitCreateManyInlineInput = {
@@ -1973,6 +2032,9 @@ export type FaculteitManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 export enum FaculteitOrderByInput {
@@ -1990,6 +2052,7 @@ export enum FaculteitOrderByInput {
 
 export type FaculteitUpdateInput = {
   titel?: InputMaybe<Scalars['String']>;
+  werkvormen?: InputMaybe<WerkvormUpdateManyInlineInput>;
 };
 
 export type FaculteitUpdateManyInlineInput = {
@@ -2164,6 +2227,9 @@ export type FaculteitWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -3628,6 +3694,7 @@ export type Opleiding = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+  werkvormen: Array<Werkvorm>;
 };
 
 
@@ -3674,6 +3741,19 @@ export type OpleidingUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
+
+export type OpleidingWerkvormenArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<WerkvormOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WerkvormWhereInput>;
+};
+
 export type OpleidingConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
@@ -3696,6 +3776,7 @@ export type OpleidingCreateInput = {
   niveau?: InputMaybe<Niveau>;
   titel?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+  werkvormen?: InputMaybe<WerkvormCreateManyInlineInput>;
 };
 
 export type OpleidingCreateManyInlineInput = {
@@ -3830,6 +3911,9 @@ export type OpleidingManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 export enum OpleidingOrderByInput {
@@ -3850,6 +3934,7 @@ export enum OpleidingOrderByInput {
 export type OpleidingUpdateInput = {
   niveau?: InputMaybe<Niveau>;
   titel?: InputMaybe<Scalars['String']>;
+  werkvormen?: InputMaybe<WerkvormUpdateManyInlineInput>;
 };
 
 export type OpleidingUpdateManyInlineInput = {
@@ -4032,6 +4117,9 @@ export type OpleidingWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -5657,6 +5745,7 @@ export type Tag = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+  werkvormen: Array<Werkvorm>;
 };
 
 
@@ -5703,6 +5792,19 @@ export type TagUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
+
+export type TagWerkvormenArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<WerkvormOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WerkvormWhereInput>;
+};
+
 export type TagConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
@@ -5721,9 +5823,11 @@ export type TagConnection = {
 };
 
 export type TagCreateInput = {
+  cldwvxt4t2q0k01unhoazap9h?: InputMaybe<CategorieCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   titel?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+  werkvormen?: InputMaybe<WerkvormCreateManyInlineInput>;
 };
 
 export type TagCreateManyInlineInput = {
@@ -5851,6 +5955,9 @@ export type TagManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 export enum TagOrderByInput {
@@ -5867,7 +5974,9 @@ export enum TagOrderByInput {
 }
 
 export type TagUpdateInput = {
+  cldwvxt4t2q0k01unhoazap9h?: InputMaybe<CategorieUpdateManyInlineInput>;
   titel?: InputMaybe<Scalars['String']>;
+  werkvormen?: InputMaybe<WerkvormUpdateManyInlineInput>;
 };
 
 export type TagUpdateManyInlineInput = {
@@ -6042,6 +6151,9 @@ export type TagWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -6062,12 +6174,6 @@ export type TagWhereStageInput = {
 export type TagWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
-
-export enum Tags {
-  Duurzaamheid = 'Duurzaamheid',
-  Ik = 'Ik',
-  PersoonlijkeInteresses = 'Persoonlijke_interesses'
-}
 
 export type Tijdsduur = {
   __typename?: 'Tijdsduur';
@@ -6836,6 +6942,7 @@ export type Vak = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+  werkvormen: Array<Werkvorm>;
 };
 
 
@@ -6882,6 +6989,19 @@ export type VakUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
+
+export type VakWerkvormenArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<WerkvormOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WerkvormWhereInput>;
+};
+
 export type VakConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
@@ -6903,6 +7023,7 @@ export type VakCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   titel?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+  werkvormen?: InputMaybe<WerkvormCreateManyInlineInput>;
 };
 
 export type VakCreateManyInlineInput = {
@@ -7030,6 +7151,9 @@ export type VakManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 export enum VakOrderByInput {
@@ -7047,6 +7171,7 @@ export enum VakOrderByInput {
 
 export type VakUpdateInput = {
   titel?: InputMaybe<Scalars['String']>;
+  werkvormen?: InputMaybe<WerkvormUpdateManyInlineInput>;
 };
 
 export type VakUpdateManyInlineInput = {
@@ -7221,6 +7346,9 @@ export type VakWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -7264,17 +7392,20 @@ export type Werkvorm = Node & {
   __typename?: 'Werkvorm';
   /** Beschrijving voor de werkvorm */
   beschrijving: Scalars['String'];
+  contactpersoon?: Maybe<Contactpersoon>;
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
   /** User that created this document */
   createdBy?: Maybe<User>;
   /** Get the document in other stages */
   documentInStages: Array<Werkvorm>;
+  faculteit?: Maybe<Faculteit>;
   /** List of Werkvorm versions */
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
   materialen: Array<Asset>;
+  opleiding?: Maybe<Opleiding>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** User that last published this document */
@@ -7283,7 +7414,7 @@ export type Werkvorm = Node & {
   /** System stage field */
   stage: Stage;
   studiejaar?: Maybe<Scalars['Int']>;
-  tags: Array<Tags>;
+  tags: Array<Tag>;
   /**
    * Thumbnail voor de werkvorm
    *
@@ -7297,7 +7428,18 @@ export type Werkvorm = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+  vak?: Maybe<Vak>;
   video?: Maybe<Asset>;
+};
+
+
+/**
+ * Model voor werkvormen
+ *
+ */
+export type WerkvormContactpersoonArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
 };
 
 
@@ -7319,6 +7461,16 @@ export type WerkvormDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean'];
   inheritLocale?: Scalars['Boolean'];
   stages?: Array<Stage>;
+};
+
+
+/**
+ * Model voor werkvormen
+ *
+ */
+export type WerkvormFaculteitArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
 };
 
 
@@ -7354,6 +7506,16 @@ export type WerkvormMaterialenArgs = {
  * Model voor werkvormen
  *
  */
+export type WerkvormOpleidingArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/**
+ * Model voor werkvormen
+ *
+ */
 export type WerkvormPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -7373,6 +7535,23 @@ export type WerkvormScheduledInArgs = {
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+/**
+ * Model voor werkvormen
+ *
+ */
+export type WerkvormTagsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<TagOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TagWhereInput>;
 };
 
 
@@ -7410,6 +7589,16 @@ export type WerkvormUpdatedByArgs = {
  * Model voor werkvormen
  *
  */
+export type WerkvormVakArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/**
+ * Model voor werkvormen
+ *
+ */
 export type WerkvormVideoArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -7434,14 +7623,18 @@ export type WerkvormConnection = {
 
 export type WerkvormCreateInput = {
   beschrijving: Scalars['String'];
+  contactpersoon?: InputMaybe<ContactpersoonCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  faculteit?: InputMaybe<FaculteitCreateOneInlineInput>;
   materialen?: InputMaybe<AssetCreateManyInlineInput>;
+  opleiding?: InputMaybe<OpleidingCreateOneInlineInput>;
   studiejaar?: InputMaybe<Scalars['Int']>;
-  tags?: InputMaybe<Array<Tags>>;
+  tags?: InputMaybe<TagCreateManyInlineInput>;
   thumbnail: AssetCreateOneInlineInput;
   tijdsduur?: InputMaybe<TijdsduurCreateOneInlineInput>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+  vak?: InputMaybe<VakCreateOneInlineInput>;
   video?: InputMaybe<AssetCreateOneInlineInput>;
 };
 
@@ -7497,6 +7690,7 @@ export type WerkvormManyWhereInput = {
   beschrijving_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   beschrijving_starts_with?: InputMaybe<Scalars['String']>;
+  contactpersoon?: InputMaybe<ContactpersoonWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7516,6 +7710,7 @@ export type WerkvormManyWhereInput = {
   documentInStages_every?: InputMaybe<WerkvormWhereStageInput>;
   documentInStages_none?: InputMaybe<WerkvormWhereStageInput>;
   documentInStages_some?: InputMaybe<WerkvormWhereStageInput>;
+  faculteit?: InputMaybe<FaculteitWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -7538,6 +7733,7 @@ export type WerkvormManyWhereInput = {
   materialen_every?: InputMaybe<AssetWhereInput>;
   materialen_none?: InputMaybe<AssetWhereInput>;
   materialen_some?: InputMaybe<AssetWhereInput>;
+  opleiding?: InputMaybe<OpleidingWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7572,16 +7768,9 @@ export type WerkvormManyWhereInput = {
   studiejaar_not?: InputMaybe<Scalars['Int']>;
   /** All values that are not contained in given list. */
   studiejaar_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
-  /** Matches if the field array contains *all* items provided to the filter and order does match */
-  tags?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array contains *all* items provided to the filter */
-  tags_contains_all?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array does not contain any of the items provided to the filter */
-  tags_contains_none?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array contains at least one item provided to the filter */
-  tags_contains_some?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-  tags_not?: InputMaybe<Array<Tags>>;
+  tags_every?: InputMaybe<TagWhereInput>;
+  tags_none?: InputMaybe<TagWhereInput>;
+  tags_some?: InputMaybe<TagWhereInput>;
   thumbnail?: InputMaybe<AssetWhereInput>;
   tijdsduur?: InputMaybe<TijdsduurWhereInput>;
   title?: InputMaybe<Scalars['String']>;
@@ -7619,6 +7808,7 @@ export type WerkvormManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  vak?: InputMaybe<VakWhereInput>;
   video?: InputMaybe<AssetWhereInput>;
 };
 
@@ -7633,8 +7823,6 @@ export enum WerkvormOrderByInput {
   PublishedAtDesc = 'publishedAt_DESC',
   StudiejaarAsc = 'studiejaar_ASC',
   StudiejaarDesc = 'studiejaar_DESC',
-  TagsAsc = 'tags_ASC',
-  TagsDesc = 'tags_DESC',
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -7643,12 +7831,16 @@ export enum WerkvormOrderByInput {
 
 export type WerkvormUpdateInput = {
   beschrijving?: InputMaybe<Scalars['String']>;
+  contactpersoon?: InputMaybe<ContactpersoonUpdateOneInlineInput>;
+  faculteit?: InputMaybe<FaculteitUpdateOneInlineInput>;
   materialen?: InputMaybe<AssetUpdateManyInlineInput>;
+  opleiding?: InputMaybe<OpleidingUpdateOneInlineInput>;
   studiejaar?: InputMaybe<Scalars['Int']>;
-  tags?: InputMaybe<Array<Tags>>;
+  tags?: InputMaybe<TagUpdateManyInlineInput>;
   thumbnail?: InputMaybe<AssetUpdateOneInlineInput>;
   tijdsduur?: InputMaybe<TijdsduurUpdateOneInlineInput>;
   title?: InputMaybe<Scalars['String']>;
+  vak?: InputMaybe<VakUpdateOneInlineInput>;
   video?: InputMaybe<AssetUpdateOneInlineInput>;
 };
 
@@ -7672,7 +7864,6 @@ export type WerkvormUpdateManyInlineInput = {
 export type WerkvormUpdateManyInput = {
   beschrijving?: InputMaybe<Scalars['String']>;
   studiejaar?: InputMaybe<Scalars['Int']>;
-  tags?: InputMaybe<Array<Tags>>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -7754,6 +7945,7 @@ export type WerkvormWhereInput = {
   beschrijving_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   beschrijving_starts_with?: InputMaybe<Scalars['String']>;
+  contactpersoon?: InputMaybe<ContactpersoonWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7773,6 +7965,7 @@ export type WerkvormWhereInput = {
   documentInStages_every?: InputMaybe<WerkvormWhereStageInput>;
   documentInStages_none?: InputMaybe<WerkvormWhereStageInput>;
   documentInStages_some?: InputMaybe<WerkvormWhereStageInput>;
+  faculteit?: InputMaybe<FaculteitWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -7795,6 +7988,7 @@ export type WerkvormWhereInput = {
   materialen_every?: InputMaybe<AssetWhereInput>;
   materialen_none?: InputMaybe<AssetWhereInput>;
   materialen_some?: InputMaybe<AssetWhereInput>;
+  opleiding?: InputMaybe<OpleidingWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7829,16 +8023,9 @@ export type WerkvormWhereInput = {
   studiejaar_not?: InputMaybe<Scalars['Int']>;
   /** All values that are not contained in given list. */
   studiejaar_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
-  /** Matches if the field array contains *all* items provided to the filter and order does match */
-  tags?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array contains *all* items provided to the filter */
-  tags_contains_all?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array does not contain any of the items provided to the filter */
-  tags_contains_none?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array contains at least one item provided to the filter */
-  tags_contains_some?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-  tags_not?: InputMaybe<Array<Tags>>;
+  tags_every?: InputMaybe<TagWhereInput>;
+  tags_none?: InputMaybe<TagWhereInput>;
+  tags_some?: InputMaybe<TagWhereInput>;
   thumbnail?: InputMaybe<AssetWhereInput>;
   tijdsduur?: InputMaybe<TijdsduurWhereInput>;
   title?: InputMaybe<Scalars['String']>;
@@ -7876,6 +8063,7 @@ export type WerkvormWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  vak?: InputMaybe<VakWhereInput>;
   video?: InputMaybe<AssetWhereInput>;
 };
 
@@ -7984,7 +8172,7 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
-export type WerkvormFragment = { __typename?: 'Werkvorm', title: string, beschrijving: string, tags: Array<Tags>, thumbnail: { __typename?: 'Asset', url: string } };
+export type WerkvormFragment = { __typename?: 'Werkvorm', title: string, beschrijving: string, thumbnail: { __typename?: 'Asset', url: string }, tags: Array<{ __typename?: 'Tag', titel?: string | null }> };
 
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -8001,7 +8189,9 @@ export const WerkvormFragmentDoc = gql`
   thumbnail {
     url
   }
-  tags
+  tags {
+    titel
+  }
 }
     `;
 export const HomePageDocument = gql`

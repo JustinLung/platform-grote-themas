@@ -1118,6 +1118,35 @@ type Categorie implements Node {
 
   """System stage field"""
   stage: Stage!
+  tags(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `tags` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `tags` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: TagOrderByInput
+    skip: Int
+    where: TagWhereInput
+  ): [Tag!]!
 
   """The time the document was updated"""
   updatedAt: DateTime!
@@ -1170,6 +1199,7 @@ type CategorieConnection {
 input CategorieCreateInput {
   categorieTitel: String
   createdAt: DateTime
+  tags: TagCreateManyInlineInput
   updatedAt: DateTime
 }
 
@@ -1319,6 +1349,9 @@ input CategorieManyWhereInput {
   scheduledIn_every: ScheduledOperationWhereInput
   scheduledIn_none: ScheduledOperationWhereInput
   scheduledIn_some: ScheduledOperationWhereInput
+  tags_every: TagWhereInput
+  tags_none: TagWhereInput
+  tags_some: TagWhereInput
   updatedAt: DateTime
 
   """All values greater than the given value."""
@@ -1359,6 +1392,7 @@ enum CategorieOrderByInput {
 
 input CategorieUpdateInput {
   categorieTitel: String
+  tags: TagUpdateManyInlineInput
 }
 
 input CategorieUpdateManyInlineInput {
@@ -1573,6 +1607,9 @@ input CategorieWhereInput {
   scheduledIn_every: ScheduledOperationWhereInput
   scheduledIn_none: ScheduledOperationWhereInput
   scheduledIn_some: ScheduledOperationWhereInput
+  tags_every: TagWhereInput
+  tags_none: TagWhereInput
+  tags_some: TagWhereInput
   updatedAt: DateTime
 
   """All values greater than the given value."""
@@ -1796,6 +1833,35 @@ type Contactpersoon implements Node {
     locales: [Locale!]
   ): User
   voornaam: String
+  werkvormen(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: WerkvormOrderByInput
+    skip: Int
+    where: WerkvormWhereInput
+  ): [Werkvorm!]!
 }
 
 input ContactpersoonConnectInput {
@@ -1824,6 +1890,7 @@ input ContactpersoonCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
   voornaam: String
+  werkvormen: WerkvormCreateManyInlineInput
 }
 
 input ContactpersoonCreateManyInlineInput {
@@ -2023,6 +2090,9 @@ input ContactpersoonManyWhereInput {
 
   """All values starting with the given string."""
   voornaam_starts_with: String
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 enum ContactpersoonOrderByInput {
@@ -2043,6 +2113,7 @@ enum ContactpersoonOrderByInput {
 input ContactpersoonUpdateInput {
   achternaam: String
   voornaam: String
+  werkvormen: WerkvormUpdateManyInlineInput
 }
 
 input ContactpersoonUpdateManyInlineInput {
@@ -2309,6 +2380,9 @@ input ContactpersoonWhereInput {
 
   """All values starting with the given string."""
   voornaam_starts_with: String
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 """
@@ -2549,6 +2623,35 @@ type Faculteit implements Node {
     """
     locales: [Locale!]
   ): User
+  werkvormen(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: WerkvormOrderByInput
+    skip: Int
+    where: WerkvormWhereInput
+  ): [Werkvorm!]!
 }
 
 input FaculteitConnectInput {
@@ -2576,6 +2679,7 @@ input FaculteitCreateInput {
   createdAt: DateTime
   titel: String
   updatedAt: DateTime
+  werkvormen: WerkvormCreateManyInlineInput
 }
 
 input FaculteitCreateManyInlineInput {
@@ -2747,6 +2851,9 @@ input FaculteitManyWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 enum FaculteitOrderByInput {
@@ -2764,6 +2871,7 @@ enum FaculteitOrderByInput {
 
 input FaculteitUpdateInput {
   titel: String
+  werkvormen: WerkvormUpdateManyInlineInput
 }
 
 input FaculteitUpdateManyInlineInput {
@@ -3001,6 +3109,9 @@ input FaculteitWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 """
@@ -4708,6 +4819,35 @@ type Opleiding implements Node {
     """
     locales: [Locale!]
   ): User
+  werkvormen(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: WerkvormOrderByInput
+    skip: Int
+    where: WerkvormWhereInput
+  ): [Werkvorm!]!
 }
 
 input OpleidingConnectInput {
@@ -4736,6 +4876,7 @@ input OpleidingCreateInput {
   niveau: Niveau
   titel: String
   updatedAt: DateTime
+  werkvormen: WerkvormCreateManyInlineInput
 }
 
 input OpleidingCreateManyInlineInput {
@@ -4917,6 +5058,9 @@ input OpleidingManyWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 enum OpleidingOrderByInput {
@@ -4937,6 +5081,7 @@ enum OpleidingOrderByInput {
 input OpleidingUpdateInput {
   niveau: Niveau
   titel: String
+  werkvormen: WerkvormUpdateManyInlineInput
 }
 
 input OpleidingUpdateManyInlineInput {
@@ -5185,6 +5330,9 @@ input OpleidingWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 """
@@ -7593,6 +7741,35 @@ type Tag implements Node {
     """
     locales: [Locale!]
   ): User
+  werkvormen(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: WerkvormOrderByInput
+    skip: Int
+    where: WerkvormWhereInput
+  ): [Werkvorm!]!
 }
 
 input TagConnectInput {
@@ -7617,9 +7794,11 @@ type TagConnection {
 }
 
 input TagCreateInput {
+  cldwvxt4t2q0k01unhoazap9h: CategorieCreateManyInlineInput
   createdAt: DateTime
   titel: String
   updatedAt: DateTime
+  werkvormen: WerkvormCreateManyInlineInput
 }
 
 input TagCreateManyInlineInput {
@@ -7791,6 +7970,9 @@ input TagManyWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 enum TagOrderByInput {
@@ -7807,7 +7989,9 @@ enum TagOrderByInput {
 }
 
 input TagUpdateInput {
+  cldwvxt4t2q0k01unhoazap9h: CategorieUpdateManyInlineInput
   titel: String
+  werkvormen: WerkvormUpdateManyInlineInput
 }
 
 input TagUpdateManyInlineInput {
@@ -8045,6 +8229,9 @@ input TagWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 """
@@ -8072,12 +8259,6 @@ input TagWhereStageInput {
 """References Tag record uniquely"""
 input TagWhereUniqueInput {
   id: ID
-}
-
-enum Tags {
-  Duurzaamheid
-  Ik
-  Persoonlijke_interesses
 }
 
 type Tijdsduur {
@@ -9190,6 +9371,35 @@ type Vak implements Node {
     """
     locales: [Locale!]
   ): User
+  werkvormen(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: WerkvormOrderByInput
+    skip: Int
+    where: WerkvormWhereInput
+  ): [Werkvorm!]!
 }
 
 input VakConnectInput {
@@ -9217,6 +9427,7 @@ input VakCreateInput {
   createdAt: DateTime
   titel: String
   updatedAt: DateTime
+  werkvormen: WerkvormCreateManyInlineInput
 }
 
 input VakCreateManyInlineInput {
@@ -9388,6 +9599,9 @@ input VakManyWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 enum VakOrderByInput {
@@ -9405,6 +9619,7 @@ enum VakOrderByInput {
 
 input VakUpdateInput {
   titel: String
+  werkvormen: WerkvormUpdateManyInlineInput
 }
 
 input VakUpdateManyInlineInput {
@@ -9642,6 +9857,9 @@ input VakWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 """
@@ -9688,6 +9906,27 @@ input VersionWhereInput {
 type Werkvorm implements Node {
   """Beschrijving voor de werkvorm"""
   beschrijving: String!
+  contactpersoon(
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `contactpersoon` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `contactpersoon` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+  ): Contactpersoon
 
   """The time the document was created"""
   createdAt: DateTime!
@@ -9728,6 +9967,27 @@ type Werkvorm implements Node {
     """Potential stages that should be returned"""
     stages: [Stage!]! = [DRAFT, PUBLISHED]
   ): [Werkvorm!]!
+  faculteit(
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `faculteit` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `faculteit` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+  ): Faculteit
 
   """List of Werkvorm versions"""
   history(
@@ -9771,6 +10031,27 @@ type Werkvorm implements Node {
     skip: Int
     where: AssetWhereInput
   ): [Asset!]!
+  opleiding(
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `opleiding` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `opleiding` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+  ): Opleiding
 
   """The time the document was published. Null on documents in draft stage."""
   publishedAt: DateTime
@@ -9829,7 +10110,35 @@ type Werkvorm implements Node {
   """System stage field"""
   stage: Stage!
   studiejaar: Int
-  tags: [Tags!]!
+  tags(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `tags` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `tags` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: TagOrderByInput
+    skip: Int
+    where: TagWhereInput
+  ): [Tag!]!
 
   "Thumbnail voor de werkvorm\n"
   thumbnail(
@@ -9905,6 +10214,27 @@ type Werkvorm implements Node {
     """
     locales: [Locale!]
   ): User
+  vak(
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `vak` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `vak` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+  ): Vak
   video(
     """
     Sets the locale of the parent document as the first locale in the fallback locales in the query's subtree.
@@ -9951,14 +10281,18 @@ type WerkvormConnection {
 
 input WerkvormCreateInput {
   beschrijving: String!
+  contactpersoon: ContactpersoonCreateOneInlineInput
   createdAt: DateTime
+  faculteit: FaculteitCreateOneInlineInput
   materialen: AssetCreateManyInlineInput
+  opleiding: OpleidingCreateOneInlineInput
   studiejaar: Int
-  tags: [Tags!]
+  tags: TagCreateManyInlineInput
   thumbnail: AssetCreateOneInlineInput!
   tijdsduur: TijdsduurCreateOneInlineInput
   title: String!
   updatedAt: DateTime
+  vak: VakCreateOneInlineInput
   video: AssetCreateOneInlineInput
 }
 
@@ -10028,6 +10362,7 @@ input WerkvormManyWhereInput {
 
   """All values starting with the given string."""
   beschrijving_starts_with: String
+  contactpersoon: ContactpersoonWhereInput
   createdAt: DateTime
 
   """All values greater than the given value."""
@@ -10054,6 +10389,7 @@ input WerkvormManyWhereInput {
   documentInStages_every: WerkvormWhereStageInput
   documentInStages_none: WerkvormWhereStageInput
   documentInStages_some: WerkvormWhereStageInput
+  faculteit: FaculteitWhereInput
   id: ID
 
   """All values containing the given string."""
@@ -10085,6 +10421,7 @@ input WerkvormManyWhereInput {
   materialen_every: AssetWhereInput
   materialen_none: AssetWhereInput
   materialen_some: AssetWhereInput
+  opleiding: OpleidingWhereInput
   publishedAt: DateTime
 
   """All values greater than the given value."""
@@ -10133,29 +10470,9 @@ input WerkvormManyWhereInput {
 
   """All values that are not contained in given list."""
   studiejaar_not_in: [Int]
-
-  """
-  Matches if the field array contains *all* items provided to the filter and order does match
-  """
-  tags: [Tags!]
-
-  """Matches if the field array contains *all* items provided to the filter"""
-  tags_contains_all: [Tags!]
-
-  """
-  Matches if the field array does not contain any of the items provided to the filter
-  """
-  tags_contains_none: [Tags!]
-
-  """
-  Matches if the field array contains at least one item provided to the filter
-  """
-  tags_contains_some: [Tags!]
-
-  """
-  Matches if the field array does not contains *all* items provided to the filter or order does not match
-  """
-  tags_not: [Tags!]
+  tags_every: TagWhereInput
+  tags_none: TagWhereInput
+  tags_some: TagWhereInput
   thumbnail: AssetWhereInput
   tijdsduur: TijdsduurWhereInput
   title: String
@@ -10209,6 +10526,7 @@ input WerkvormManyWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  vak: VakWhereInput
   video: AssetWhereInput
 }
 
@@ -10223,8 +10541,6 @@ enum WerkvormOrderByInput {
   publishedAt_DESC
   studiejaar_ASC
   studiejaar_DESC
-  tags_ASC
-  tags_DESC
   title_ASC
   title_DESC
   updatedAt_ASC
@@ -10233,12 +10549,16 @@ enum WerkvormOrderByInput {
 
 input WerkvormUpdateInput {
   beschrijving: String
+  contactpersoon: ContactpersoonUpdateOneInlineInput
+  faculteit: FaculteitUpdateOneInlineInput
   materialen: AssetUpdateManyInlineInput
+  opleiding: OpleidingUpdateOneInlineInput
   studiejaar: Int
-  tags: [Tags!]
+  tags: TagUpdateManyInlineInput
   thumbnail: AssetUpdateOneInlineInput
   tijdsduur: TijdsduurUpdateOneInlineInput
   title: String
+  vak: VakUpdateOneInlineInput
   video: AssetUpdateOneInlineInput
 }
 
@@ -10270,7 +10590,6 @@ input WerkvormUpdateManyInlineInput {
 input WerkvormUpdateManyInput {
   beschrijving: String
   studiejaar: Int
-  tags: [Tags!]
   title: String
 }
 
@@ -10377,6 +10696,7 @@ input WerkvormWhereInput {
 
   """All values starting with the given string."""
   beschrijving_starts_with: String
+  contactpersoon: ContactpersoonWhereInput
   createdAt: DateTime
 
   """All values greater than the given value."""
@@ -10403,6 +10723,7 @@ input WerkvormWhereInput {
   documentInStages_every: WerkvormWhereStageInput
   documentInStages_none: WerkvormWhereStageInput
   documentInStages_some: WerkvormWhereStageInput
+  faculteit: FaculteitWhereInput
   id: ID
 
   """All values containing the given string."""
@@ -10434,6 +10755,7 @@ input WerkvormWhereInput {
   materialen_every: AssetWhereInput
   materialen_none: AssetWhereInput
   materialen_some: AssetWhereInput
+  opleiding: OpleidingWhereInput
   publishedAt: DateTime
 
   """All values greater than the given value."""
@@ -10482,29 +10804,9 @@ input WerkvormWhereInput {
 
   """All values that are not contained in given list."""
   studiejaar_not_in: [Int]
-
-  """
-  Matches if the field array contains *all* items provided to the filter and order does match
-  """
-  tags: [Tags!]
-
-  """Matches if the field array contains *all* items provided to the filter"""
-  tags_contains_all: [Tags!]
-
-  """
-  Matches if the field array does not contain any of the items provided to the filter
-  """
-  tags_contains_none: [Tags!]
-
-  """
-  Matches if the field array contains at least one item provided to the filter
-  """
-  tags_contains_some: [Tags!]
-
-  """
-  Matches if the field array does not contains *all* items provided to the filter or order does not match
-  """
-  tags_not: [Tags!]
+  tags_every: TagWhereInput
+  tags_none: TagWhereInput
+  tags_some: TagWhereInput
   thumbnail: AssetWhereInput
   tijdsduur: TijdsduurWhereInput
   title: String
@@ -10558,6 +10860,7 @@ input WerkvormWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  vak: VakWhereInput
   video: AssetWhereInput
 }
 
