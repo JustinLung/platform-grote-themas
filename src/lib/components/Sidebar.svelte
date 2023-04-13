@@ -11,6 +11,7 @@
 
 <aside>
 	<h2>Zoeken</h2>
+	<!-- Search -->
 	<input on:keyup={handleSearch} type="search" placeholder="Zoek op werkvormen en thema's" />
 	<div>
 		<Collapsable title="Onderwerp">
