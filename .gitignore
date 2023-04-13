@@ -2,7 +2,6 @@
 node_modules
 /build
 /.svelte-kit
-/src/lib/graphql/generated/
 /package
 .env
 .env.*

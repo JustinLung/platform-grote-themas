@@ -1,0 +1,10 @@
+fragment Werkvorm on Werkvorm {
+	title
+	beschrijving
+	thumbnail {
+		url
+	}
+	tags {
+		titel
+	}
+}

@@ -28,7 +28,7 @@ module.exports = {
 					],
 					config: {
 						fetcher: {
-							endpoint: process.env.CONTENTFUL_SPACE_URL
+							endpoint: process.env.HYGRAPH_URL
 						},
 						rawRequest: false,
 						inlineFragmentTypes: 'combine',
