@@ -9,6 +9,6 @@ export const filteredWerkvormen = derived(searchterm, ($searchterm) => {
 	const werkvormenArr = get(werkvormenStore);
 	if (!$searchterm) return werkvormenArr;
 	return werkvormenArr.filter((werkvorm) => {
-		return werkvorm.title.toLowerCase().includes(get(searchterm));
+		return werkvorm.title.toLowerCase().includes(get(searchterm).toLowerCase());
 	});
 });
