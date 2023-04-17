@@ -1,9 +1,11 @@
 <script lang="ts">
 	import type { WerkvormFragment } from '$lib/graphql/generated/sdk';
+	import { filteredWerkvormen, werkvormenStore } from '../../state/filter';
 	import Tag from './Tag.svelte';
 	import Werkvorm from './Werkvorm.svelte';
 
 	export let werkvormen: WerkvormFragment[];
+	werkvormenStore.set(werkvormen);
 </script>
 
 <section>
@@ -12,11 +14,12 @@
 		{#if !werkvormen.length}
 			<p>Er zijn nog geen bestaande werkvormen</p>
 		{:else}
-			{#each werkvormen as werkvorm}
+			{#each $filteredWerkvormen as werkvorm}
+				<!-- TODO: Slug from Hygraph -->
 				<Werkvorm
 					title={werkvorm.title}
 					description={werkvorm.beschrijving}
-					link="/"
+					link="/hier-komt-slug"
 					image={werkvorm.thumbnail.url}
 				>
 					<Tag title="Ik" color="var(--color-hva-light-blue)" link="/" />
