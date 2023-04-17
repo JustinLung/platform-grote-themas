@@ -1,6 +1,6 @@
 import { kitClient } from '$lib/graphql/client';
 
-export function load() {
-	const werkvormen = kitClient.HomePage();
+export async function load() {
+	const werkvormen = await kitClient.HomePage();
 	return { werkvormen };
 }

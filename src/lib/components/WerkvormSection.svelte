@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { WerkvormFragment } from '$lib/graphql/generated/sdk';
-	import { filteredWerkvormen } from '../../state/filter';
+	import { filteredWerkvormen, werkvormenStore } from '../../state/filter';
 	import Tag from './Tag.svelte';
 	import Werkvorm from './Werkvorm.svelte';
 
 	export let werkvormen: WerkvormFragment[];
+	werkvormenStore.set(werkvormen);
 </script>
 
 <section>
