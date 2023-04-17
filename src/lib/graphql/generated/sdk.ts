@@ -1226,6 +1226,7 @@ export type Contactpersoon = Node & {
   createdBy?: Maybe<User>;
   /** Get the document in other stages */
   documentInStages: Array<Contactpersoon>;
+  email: Scalars['String'];
   /** List of Contactpersoon versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -1307,7 +1308,9 @@ export type ContactpersoonConnection = {
 
 export type ContactpersoonCreateInput = {
   achternaam?: InputMaybe<Scalars['String']>;
+  clgl012t93q4l01t503fsg5fz?: InputMaybe<WerkvormCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  email: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   voornaam?: InputMaybe<Scalars['String']>;
 };
@@ -1383,6 +1386,25 @@ export type ContactpersoonManyWhereInput = {
   documentInStages_every?: InputMaybe<ContactpersoonWhereStageInput>;
   documentInStages_none?: InputMaybe<ContactpersoonWhereStageInput>;
   documentInStages_some?: InputMaybe<ContactpersoonWhereStageInput>;
+  email?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  email_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  email_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  email_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  email_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  email_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  email_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  email_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  email_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  email_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -1463,6 +1485,8 @@ export enum ContactpersoonOrderByInput {
   AchternaamDesc = 'achternaam_DESC',
   CreatedAtAsc = 'createdAt_ASC',
   CreatedAtDesc = 'createdAt_DESC',
+  EmailAsc = 'email_ASC',
+  EmailDesc = 'email_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
@@ -1475,6 +1499,8 @@ export enum ContactpersoonOrderByInput {
 
 export type ContactpersoonUpdateInput = {
   achternaam?: InputMaybe<Scalars['String']>;
+  clgl012t93q4l01t503fsg5fz?: InputMaybe<WerkvormUpdateManyInlineInput>;
+  email?: InputMaybe<Scalars['String']>;
   voornaam?: InputMaybe<Scalars['String']>;
 };
 
@@ -1497,6 +1523,7 @@ export type ContactpersoonUpdateManyInlineInput = {
 
 export type ContactpersoonUpdateManyInput = {
   achternaam?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
   voornaam?: InputMaybe<Scalars['String']>;
 };
 
@@ -1597,6 +1624,25 @@ export type ContactpersoonWhereInput = {
   documentInStages_every?: InputMaybe<ContactpersoonWhereStageInput>;
   documentInStages_none?: InputMaybe<ContactpersoonWhereStageInput>;
   documentInStages_some?: InputMaybe<ContactpersoonWhereStageInput>;
+  email?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  email_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  email_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  email_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  email_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  email_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  email_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  email_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  email_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  email_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -1843,6 +1889,7 @@ export type FaculteitConnection = {
 };
 
 export type FaculteitCreateInput = {
+  clgl06bdc3pxo01t245x58d3d?: InputMaybe<OpleidingCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   titel?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -1989,6 +2036,7 @@ export enum FaculteitOrderByInput {
 }
 
 export type FaculteitUpdateInput = {
+  clgl06bdc3pxo01t245x58d3d?: InputMaybe<OpleidingUpdateManyInlineInput>;
   titel?: InputMaybe<Scalars['String']>;
 };
 
@@ -3611,6 +3659,7 @@ export type Opleiding = Node & {
   createdBy?: Maybe<User>;
   /** Get the document in other stages */
   documentInStages: Array<Opleiding>;
+  faculteit?: Maybe<Faculteit>;
   /** List of Opleiding versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -3641,6 +3690,12 @@ export type OpleidingDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean'];
   inheritLocale?: Scalars['Boolean'];
   stages?: Array<Stage>;
+};
+
+
+export type OpleidingFaculteitArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
 };
 
 
@@ -3692,7 +3747,9 @@ export type OpleidingConnection = {
 };
 
 export type OpleidingCreateInput = {
+  clgl05nxy3pnq01ugg0m8bm7m?: InputMaybe<WerkvormCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  faculteit?: InputMaybe<FaculteitCreateOneInlineInput>;
   niveau?: InputMaybe<Niveau>;
   titel?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -3750,6 +3807,7 @@ export type OpleidingManyWhereInput = {
   documentInStages_every?: InputMaybe<OpleidingWhereStageInput>;
   documentInStages_none?: InputMaybe<OpleidingWhereStageInput>;
   documentInStages_some?: InputMaybe<OpleidingWhereStageInput>;
+  faculteit?: InputMaybe<FaculteitWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -3848,6 +3906,8 @@ export enum OpleidingOrderByInput {
 }
 
 export type OpleidingUpdateInput = {
+  clgl05nxy3pnq01ugg0m8bm7m?: InputMaybe<WerkvormUpdateManyInlineInput>;
+  faculteit?: InputMaybe<FaculteitUpdateOneInlineInput>;
   niveau?: InputMaybe<Niveau>;
   titel?: InputMaybe<Scalars['String']>;
 };
@@ -3952,6 +4012,7 @@ export type OpleidingWhereInput = {
   documentInStages_every?: InputMaybe<OpleidingWhereStageInput>;
   documentInStages_none?: InputMaybe<OpleidingWhereStageInput>;
   documentInStages_some?: InputMaybe<OpleidingWhereStageInput>;
+  faculteit?: InputMaybe<FaculteitWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -7264,6 +7325,7 @@ export type Werkvorm = Node & {
   __typename?: 'Werkvorm';
   /** Beschrijving voor de werkvorm */
   beschrijving: Scalars['String'];
+  contactpersonen: Array<Contactpersoon>;
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
   /** User that created this document */
@@ -7274,7 +7336,10 @@ export type Werkvorm = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
+  korteBeschrijving?: Maybe<Scalars['String']>;
+  link?: Maybe<Scalars['String']>;
   materialen: Array<Asset>;
+  opleiding?: Maybe<Opleiding>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** User that last published this document */
@@ -7298,6 +7363,23 @@ export type Werkvorm = Node & {
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
   video?: Maybe<Asset>;
+};
+
+
+/**
+ * Model voor werkvormen
+ *
+ */
+export type WerkvormContactpersonenArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ContactpersoonOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ContactpersoonWhereInput>;
 };
 
 
@@ -7347,6 +7429,16 @@ export type WerkvormMaterialenArgs = {
   orderBy?: InputMaybe<AssetOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AssetWhereInput>;
+};
+
+
+/**
+ * Model voor werkvormen
+ *
+ */
+export type WerkvormOpleidingArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  locales?: InputMaybe<Array<Locale>>;
 };
 
 
@@ -7434,8 +7526,12 @@ export type WerkvormConnection = {
 
 export type WerkvormCreateInput = {
   beschrijving: Scalars['String'];
+  contactpersonen?: InputMaybe<ContactpersoonCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  korteBeschrijving?: InputMaybe<Scalars['String']>;
+  link?: InputMaybe<Scalars['String']>;
   materialen?: InputMaybe<AssetCreateManyInlineInput>;
+  opleiding?: InputMaybe<OpleidingCreateOneInlineInput>;
   studiejaar?: InputMaybe<Scalars['Int']>;
   tags?: InputMaybe<Array<Tags>>;
   thumbnail: AssetCreateOneInlineInput;
@@ -7497,6 +7593,9 @@ export type WerkvormManyWhereInput = {
   beschrijving_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   beschrijving_starts_with?: InputMaybe<Scalars['String']>;
+  contactpersonen_every?: InputMaybe<ContactpersoonWhereInput>;
+  contactpersonen_none?: InputMaybe<ContactpersoonWhereInput>;
+  contactpersonen_some?: InputMaybe<ContactpersoonWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7535,9 +7634,48 @@ export type WerkvormManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
+  korteBeschrijving?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  korteBeschrijving_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  korteBeschrijving_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  korteBeschrijving_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  korteBeschrijving_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  korteBeschrijving_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  korteBeschrijving_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  korteBeschrijving_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  korteBeschrijving_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  korteBeschrijving_starts_with?: InputMaybe<Scalars['String']>;
+  link?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  link_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  link_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  link_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  link_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  link_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  link_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  link_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  link_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  link_starts_with?: InputMaybe<Scalars['String']>;
   materialen_every?: InputMaybe<AssetWhereInput>;
   materialen_none?: InputMaybe<AssetWhereInput>;
   materialen_some?: InputMaybe<AssetWhereInput>;
+  opleiding?: InputMaybe<OpleidingWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7629,6 +7767,10 @@ export enum WerkvormOrderByInput {
   CreatedAtDesc = 'createdAt_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
+  KorteBeschrijvingAsc = 'korteBeschrijving_ASC',
+  KorteBeschrijvingDesc = 'korteBeschrijving_DESC',
+  LinkAsc = 'link_ASC',
+  LinkDesc = 'link_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   StudiejaarAsc = 'studiejaar_ASC',
@@ -7643,7 +7785,11 @@ export enum WerkvormOrderByInput {
 
 export type WerkvormUpdateInput = {
   beschrijving?: InputMaybe<Scalars['String']>;
+  contactpersonen?: InputMaybe<ContactpersoonUpdateManyInlineInput>;
+  korteBeschrijving?: InputMaybe<Scalars['String']>;
+  link?: InputMaybe<Scalars['String']>;
   materialen?: InputMaybe<AssetUpdateManyInlineInput>;
+  opleiding?: InputMaybe<OpleidingUpdateOneInlineInput>;
   studiejaar?: InputMaybe<Scalars['Int']>;
   tags?: InputMaybe<Array<Tags>>;
   thumbnail?: InputMaybe<AssetUpdateOneInlineInput>;
@@ -7671,6 +7817,7 @@ export type WerkvormUpdateManyInlineInput = {
 
 export type WerkvormUpdateManyInput = {
   beschrijving?: InputMaybe<Scalars['String']>;
+  korteBeschrijving?: InputMaybe<Scalars['String']>;
   studiejaar?: InputMaybe<Scalars['Int']>;
   tags?: InputMaybe<Array<Tags>>;
   title?: InputMaybe<Scalars['String']>;
@@ -7754,6 +7901,9 @@ export type WerkvormWhereInput = {
   beschrijving_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   beschrijving_starts_with?: InputMaybe<Scalars['String']>;
+  contactpersonen_every?: InputMaybe<ContactpersoonWhereInput>;
+  contactpersonen_none?: InputMaybe<ContactpersoonWhereInput>;
+  contactpersonen_some?: InputMaybe<ContactpersoonWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7792,9 +7942,48 @@ export type WerkvormWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
+  korteBeschrijving?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  korteBeschrijving_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  korteBeschrijving_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  korteBeschrijving_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  korteBeschrijving_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  korteBeschrijving_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  korteBeschrijving_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  korteBeschrijving_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  korteBeschrijving_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  korteBeschrijving_starts_with?: InputMaybe<Scalars['String']>;
+  link?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  link_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  link_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  link_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  link_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  link_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  link_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  link_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  link_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  link_starts_with?: InputMaybe<Scalars['String']>;
   materialen_every?: InputMaybe<AssetWhereInput>;
   materialen_none?: InputMaybe<AssetWhereInput>;
   materialen_some?: InputMaybe<AssetWhereInput>;
+  opleiding?: InputMaybe<OpleidingWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7896,6 +8085,7 @@ export type WerkvormWhereStageInput = {
 /** References Werkvorm record uniquely */
 export type WerkvormWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
+  link?: InputMaybe<Scalars['String']>;
 };
 
 export enum _FilterKind {
@@ -7984,7 +8174,9 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
-export type WerkvormFragment = { __typename?: 'Werkvorm', title: string, beschrijving: string, tags: Array<Tags>, thumbnail: { __typename?: 'Asset', url: string } };
+export type WerkvormFragment = { __typename?: 'Werkvorm', title: string, beschrijving: string, tags: Array<Tags>, link?: string | null, thumbnail: { __typename?: 'Asset', url: string } };
+
+export type WerkvormDetailFragment = { __typename?: 'Werkvorm', beschrijving: string, tags: Array<Tags>, contactpersonen: Array<{ __typename?: 'Contactpersoon', voornaam?: string | null, achternaam?: string | null, email: string }>, opleiding?: { __typename?: 'Opleiding', titel?: string | null, faculteit?: { __typename?: 'Faculteit', titel?: string | null } | null } | null, video?: { __typename?: 'Asset', url: string } | null, materialen: Array<{ __typename?: 'Asset', url: string }> };
 
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -7994,11 +8186,45 @@ export type HomePageQuery = { __typename?: 'Query', werkvormen: Array<(
     & WerkvormFragment
   )> };
 
+export type DetailPageQueryVariables = Exact<{
+  link: Scalars['String'];
+}>;
+
+
+export type DetailPageQuery = { __typename?: 'Query', werkvormen: Array<(
+    { __typename?: 'Werkvorm' }
+    & WerkvormDetailFragment
+  )> };
+
 export const WerkvormFragmentDoc = gql`
     fragment Werkvorm on Werkvorm {
   title
   beschrijving
   thumbnail {
+    url
+  }
+  tags
+  link
+}
+    `;
+export const WerkvormDetailFragmentDoc = gql`
+    fragment WerkvormDetail on Werkvorm {
+  beschrijving
+  contactpersonen {
+    voornaam
+    achternaam
+    email
+  }
+  opleiding {
+    titel
+    faculteit {
+      titel
+    }
+  }
+  video {
+    url
+  }
+  materialen {
     url
   }
   tags
@@ -8011,6 +8237,13 @@ export const HomePageDocument = gql`
   }
 }
     ${WerkvormFragmentDoc}`;
+export const DetailPageDocument = gql`
+    query DetailPage($link: String!) {
+  werkvormen(where: {link: $link}) {
+    ...WerkvormDetail
+  }
+}
+    ${WerkvormDetailFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -8021,6 +8254,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     HomePage(variables?: HomePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<HomePageQuery>(HomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'HomePage', 'query');
+    },
+    DetailPage(variables: DetailPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DetailPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DetailPageQuery>(DetailPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DetailPage', 'query');
     }
   };
 }
@@ -8031,6 +8267,9 @@ export function getSdkWithHooks(client: GraphQLClient, withWrapper: SdkFunctionW
     ...sdk,
     useHomePage(key: SWRKeyInterface, variables?: HomePageQueryVariables, config?: SWRConfigInterface<HomePageQuery, ClientError>) {
       return useSWR<HomePageQuery, ClientError>(key, () => sdk.HomePage(variables), config);
+    },
+    useDetailPage(key: SWRKeyInterface, variables: DetailPageQueryVariables, config?: SWRConfigInterface<DetailPageQuery, ClientError>) {
+      return useSWR<DetailPageQuery, ClientError>(key, () => sdk.DetailPage(variables), config);
     }
   };
 }

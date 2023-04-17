@@ -4,3 +4,9 @@ query HomePage {
 		...Werkvorm
 	}
 }
+
+query DetailPage($link: String!) {
+	werkvormen(where: { link: $link }) {
+		...WerkvormDetail
+	}
+}
