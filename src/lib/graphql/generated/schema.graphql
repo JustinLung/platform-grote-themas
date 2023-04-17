@@ -1698,6 +1698,7 @@ type Contactpersoon implements Node {
     """Potential stages that should be returned"""
     stages: [Stage!]! = [DRAFT, PUBLISHED]
   ): [Contactpersoon!]!
+  email: String!
 
   """List of Contactpersoon versions"""
   history(
@@ -1821,7 +1822,9 @@ type ContactpersoonConnection {
 
 input ContactpersoonCreateInput {
   achternaam: String
+  clgl012t93q4l01t503fsg5fz: WerkvormCreateManyInlineInput
   createdAt: DateTime
+  email: String!
   updatedAt: DateTime
   voornaam: String
 }
@@ -1918,6 +1921,34 @@ input ContactpersoonManyWhereInput {
   documentInStages_every: ContactpersoonWhereStageInput
   documentInStages_none: ContactpersoonWhereStageInput
   documentInStages_some: ContactpersoonWhereStageInput
+  email: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values that are contained in given list."""
+  email_in: [String]
+
+  """Any other value that exists and is not equal to the given value."""
+  email_not: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values not ending with the given string"""
+  email_not_ends_with: String
+
+  """All values that are not contained in given list."""
+  email_not_in: [String]
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
   id: ID
 
   """All values containing the given string."""
@@ -2030,6 +2061,8 @@ enum ContactpersoonOrderByInput {
   achternaam_DESC
   createdAt_ASC
   createdAt_DESC
+  email_ASC
+  email_DESC
   id_ASC
   id_DESC
   publishedAt_ASC
@@ -2042,6 +2075,8 @@ enum ContactpersoonOrderByInput {
 
 input ContactpersoonUpdateInput {
   achternaam: String
+  clgl012t93q4l01t503fsg5fz: WerkvormUpdateManyInlineInput
+  email: String
   voornaam: String
 }
 
@@ -2072,6 +2107,7 @@ input ContactpersoonUpdateManyInlineInput {
 
 input ContactpersoonUpdateManyInput {
   achternaam: String
+  email: String
   voornaam: String
 }
 
@@ -2204,6 +2240,34 @@ input ContactpersoonWhereInput {
   documentInStages_every: ContactpersoonWhereStageInput
   documentInStages_none: ContactpersoonWhereStageInput
   documentInStages_some: ContactpersoonWhereStageInput
+  email: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values that are contained in given list."""
+  email_in: [String]
+
+  """Any other value that exists and is not equal to the given value."""
+  email_not: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values not ending with the given string"""
+  email_not_ends_with: String
+
+  """All values that are not contained in given list."""
+  email_not_in: [String]
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
   id: ID
 
   """All values containing the given string."""
@@ -2573,6 +2637,7 @@ type FaculteitConnection {
 }
 
 input FaculteitCreateInput {
+  clgl06bdc3pxo01t245x58d3d: OpleidingCreateManyInlineInput
   createdAt: DateTime
   titel: String
   updatedAt: DateTime
@@ -2763,6 +2828,7 @@ enum FaculteitOrderByInput {
 }
 
 input FaculteitUpdateInput {
+  clgl06bdc3pxo01t245x58d3d: OpleidingUpdateManyInlineInput
   titel: String
 }
 
@@ -4609,6 +4675,27 @@ type Opleiding implements Node {
     """Potential stages that should be returned"""
     stages: [Stage!]! = [DRAFT, PUBLISHED]
   ): [Opleiding!]!
+  faculteit(
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `faculteit` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `faculteit` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+  ): Faculteit
 
   """List of Opleiding versions"""
   history(
@@ -4732,7 +4819,9 @@ type OpleidingConnection {
 }
 
 input OpleidingCreateInput {
+  clgl05nxy3pnq01ugg0m8bm7m: WerkvormCreateManyInlineInput
   createdAt: DateTime
+  faculteit: FaculteitCreateOneInlineInput
   niveau: Niveau
   titel: String
   updatedAt: DateTime
@@ -4802,6 +4891,7 @@ input OpleidingManyWhereInput {
   documentInStages_every: OpleidingWhereStageInput
   documentInStages_none: OpleidingWhereStageInput
   documentInStages_some: OpleidingWhereStageInput
+  faculteit: FaculteitWhereInput
   id: ID
 
   """All values containing the given string."""
@@ -4935,6 +5025,8 @@ enum OpleidingOrderByInput {
 }
 
 input OpleidingUpdateInput {
+  clgl05nxy3pnq01ugg0m8bm7m: WerkvormUpdateManyInlineInput
+  faculteit: FaculteitUpdateOneInlineInput
   niveau: Niveau
   titel: String
 }
@@ -5070,6 +5162,7 @@ input OpleidingWhereInput {
   documentInStages_every: OpleidingWhereStageInput
   documentInStages_none: OpleidingWhereStageInput
   documentInStages_some: OpleidingWhereStageInput
+  faculteit: FaculteitWhereInput
   id: ID
 
   """All values containing the given string."""
@@ -9688,6 +9781,35 @@ input VersionWhereInput {
 type Werkvorm implements Node {
   """Beschrijving voor de werkvorm"""
   beschrijving: String!
+  contactpersonen(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `contactpersonen` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `contactpersonen` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: ContactpersoonOrderByInput
+    skip: Int
+    where: ContactpersoonWhereInput
+  ): [Contactpersoon!]!
 
   """The time the document was created"""
   createdAt: DateTime!
@@ -9742,6 +9864,8 @@ type Werkvorm implements Node {
 
   """The unique identifier"""
   id: ID!
+  korteBeschrijving: String
+  link: String
   materialen(
     after: String
     before: String
@@ -9771,6 +9895,27 @@ type Werkvorm implements Node {
     skip: Int
     where: AssetWhereInput
   ): [Asset!]!
+  opleiding(
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `opleiding` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `opleiding` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+  ): Opleiding
 
   """The time the document was published. Null on documents in draft stage."""
   publishedAt: DateTime
@@ -9951,8 +10096,12 @@ type WerkvormConnection {
 
 input WerkvormCreateInput {
   beschrijving: String!
+  contactpersonen: ContactpersoonCreateManyInlineInput
   createdAt: DateTime
+  korteBeschrijving: String
+  link: String
   materialen: AssetCreateManyInlineInput
+  opleiding: OpleidingCreateOneInlineInput
   studiejaar: Int
   tags: [Tags!]
   thumbnail: AssetCreateOneInlineInput!
@@ -10028,6 +10177,9 @@ input WerkvormManyWhereInput {
 
   """All values starting with the given string."""
   beschrijving_starts_with: String
+  contactpersonen_every: ContactpersoonWhereInput
+  contactpersonen_none: ContactpersoonWhereInput
+  contactpersonen_some: ContactpersoonWhereInput
   createdAt: DateTime
 
   """All values greater than the given value."""
@@ -10082,9 +10234,66 @@ input WerkvormManyWhereInput {
 
   """All values starting with the given string."""
   id_starts_with: ID
+  korteBeschrijving: String
+
+  """All values containing the given string."""
+  korteBeschrijving_contains: String
+
+  """All values ending with the given string."""
+  korteBeschrijving_ends_with: String
+
+  """All values that are contained in given list."""
+  korteBeschrijving_in: [String]
+
+  """Any other value that exists and is not equal to the given value."""
+  korteBeschrijving_not: String
+
+  """All values not containing the given string."""
+  korteBeschrijving_not_contains: String
+
+  """All values not ending with the given string"""
+  korteBeschrijving_not_ends_with: String
+
+  """All values that are not contained in given list."""
+  korteBeschrijving_not_in: [String]
+
+  """All values not starting with the given string."""
+  korteBeschrijving_not_starts_with: String
+
+  """All values starting with the given string."""
+  korteBeschrijving_starts_with: String
+  link: String
+
+  """All values containing the given string."""
+  link_contains: String
+
+  """All values ending with the given string."""
+  link_ends_with: String
+
+  """All values that are contained in given list."""
+  link_in: [String]
+
+  """Any other value that exists and is not equal to the given value."""
+  link_not: String
+
+  """All values not containing the given string."""
+  link_not_contains: String
+
+  """All values not ending with the given string"""
+  link_not_ends_with: String
+
+  """All values that are not contained in given list."""
+  link_not_in: [String]
+
+  """All values not starting with the given string."""
+  link_not_starts_with: String
+
+  """All values starting with the given string."""
+  link_starts_with: String
   materialen_every: AssetWhereInput
   materialen_none: AssetWhereInput
   materialen_some: AssetWhereInput
+  opleiding: OpleidingWhereInput
   publishedAt: DateTime
 
   """All values greater than the given value."""
@@ -10219,6 +10428,10 @@ enum WerkvormOrderByInput {
   createdAt_DESC
   id_ASC
   id_DESC
+  korteBeschrijving_ASC
+  korteBeschrijving_DESC
+  link_ASC
+  link_DESC
   publishedAt_ASC
   publishedAt_DESC
   studiejaar_ASC
@@ -10233,7 +10446,11 @@ enum WerkvormOrderByInput {
 
 input WerkvormUpdateInput {
   beschrijving: String
+  contactpersonen: ContactpersoonUpdateManyInlineInput
+  korteBeschrijving: String
+  link: String
   materialen: AssetUpdateManyInlineInput
+  opleiding: OpleidingUpdateOneInlineInput
   studiejaar: Int
   tags: [Tags!]
   thumbnail: AssetUpdateOneInlineInput
@@ -10269,6 +10486,7 @@ input WerkvormUpdateManyInlineInput {
 
 input WerkvormUpdateManyInput {
   beschrijving: String
+  korteBeschrijving: String
   studiejaar: Int
   tags: [Tags!]
   title: String
@@ -10377,6 +10595,9 @@ input WerkvormWhereInput {
 
   """All values starting with the given string."""
   beschrijving_starts_with: String
+  contactpersonen_every: ContactpersoonWhereInput
+  contactpersonen_none: ContactpersoonWhereInput
+  contactpersonen_some: ContactpersoonWhereInput
   createdAt: DateTime
 
   """All values greater than the given value."""
@@ -10431,9 +10652,66 @@ input WerkvormWhereInput {
 
   """All values starting with the given string."""
   id_starts_with: ID
+  korteBeschrijving: String
+
+  """All values containing the given string."""
+  korteBeschrijving_contains: String
+
+  """All values ending with the given string."""
+  korteBeschrijving_ends_with: String
+
+  """All values that are contained in given list."""
+  korteBeschrijving_in: [String]
+
+  """Any other value that exists and is not equal to the given value."""
+  korteBeschrijving_not: String
+
+  """All values not containing the given string."""
+  korteBeschrijving_not_contains: String
+
+  """All values not ending with the given string"""
+  korteBeschrijving_not_ends_with: String
+
+  """All values that are not contained in given list."""
+  korteBeschrijving_not_in: [String]
+
+  """All values not starting with the given string."""
+  korteBeschrijving_not_starts_with: String
+
+  """All values starting with the given string."""
+  korteBeschrijving_starts_with: String
+  link: String
+
+  """All values containing the given string."""
+  link_contains: String
+
+  """All values ending with the given string."""
+  link_ends_with: String
+
+  """All values that are contained in given list."""
+  link_in: [String]
+
+  """Any other value that exists and is not equal to the given value."""
+  link_not: String
+
+  """All values not containing the given string."""
+  link_not_contains: String
+
+  """All values not ending with the given string"""
+  link_not_ends_with: String
+
+  """All values that are not contained in given list."""
+  link_not_in: [String]
+
+  """All values not starting with the given string."""
+  link_not_starts_with: String
+
+  """All values starting with the given string."""
+  link_starts_with: String
   materialen_every: AssetWhereInput
   materialen_none: AssetWhereInput
   materialen_some: AssetWhereInput
+  opleiding: OpleidingWhereInput
   publishedAt: DateTime
 
   """All values greater than the given value."""
@@ -10586,6 +10864,7 @@ input WerkvormWhereStageInput {
 """References Werkvorm record uniquely"""
 input WerkvormWhereUniqueInput {
   id: ID
+  link: String
 }
 
 enum _FilterKind {

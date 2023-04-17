@@ -1,15 +1,24 @@
 <script lang="ts">
 	export let navTitle: string = '';
-	import { page } from '$app/stores'
-	
-	const werkvormTitle = $page.url.pathname.replace('/','')
+	import { page } from '$app/stores';
+
+	// TODO: Betere manier doen
+	const werkvormTitle = $page.url.pathname
+		.replace('/', '')
+		.replace('werkvorm-', '')
+		.split('-')
+		.join(' ');
 </script>
 
 <header>
 	<div>
 		<img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" />
 		<div>Hva / Informatie / Werkvormen & thema's {navTitle}</div>
-		<h1>{$page.url.pathname === '/' ? "Werkvormen & Thema's" : werkvormTitle}</h1>
+		<h1>
+			{$page.url.pathname === '/'
+				? "Werkvormen & Thema's"
+				: werkvormTitle[0].toUpperCase() + werkvormTitle.slice(1, werkvormTitle.length)}
+		</h1>
 		<p>
 			Hier vind je alle werkvormen en thema’s die je kunt bekijken en materiaal van kan downloaden.
 		</p>

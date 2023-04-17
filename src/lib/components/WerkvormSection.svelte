@@ -19,7 +19,7 @@
 				<Werkvorm
 					title={werkvorm.title}
 					description={werkvorm.beschrijving}
-					link="/hier-komt-slug"
+					link={werkvorm.link || '/'}
 					image={werkvorm.thumbnail.url}
 				>
 					<Tag title="Ik" color="var(--color-hva-light-blue)" link="/" />
