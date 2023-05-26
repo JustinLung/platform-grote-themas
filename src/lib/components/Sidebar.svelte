@@ -1,11 +1,16 @@
-<script>
+<script lang="ts">
 	import Collapsable from './Collapsable.svelte';
 	import { onderwerpen, focus, doel, fase } from '$lib/data/categories';
+	import { searchterm } from '../../state/filter';
+	function handleSearch(e: KeyboardEvent) {
+		const value = (e.target as HTMLInputElement).value;
+		searchterm.set(value);
+	}
 </script>
 
 <aside>
 	<h2>Zoeken</h2>
-	<input type="search" placeholder="Zoek op werkvormen en thema's" />
+	<input on:keyup={handleSearch} type="search" placeholder="Zoek op werkvormen en thema's" />
 	<div>
 		<Collapsable title="Onderwerp">
 			{#each onderwerpen as onderwerp}
