@@ -2,11 +2,8 @@
 	import Tag from '$lib/components/Tag.svelte';
 	import Video from '$lib/components/Video.svelte';
 	import PaperclipIcon from '$lib/icons/paperclip.svg?component';
-		'hier komt een korste omschrijving over de werkvorm of het thema. Er kan van alles staan maar voor nu staat hier een random tekst die eigenlijk nergens over staat maar er puur voor dient om content op te vullen. Zo lijkt het toch nog wat en is het design mooier om naar te loeren.';
 
 	export let data;
-
-	console.log(data);
 </script>
 
 <section>
