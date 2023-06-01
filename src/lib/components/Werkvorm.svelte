@@ -7,7 +7,7 @@
 </script>
 
 <article>
-	<a href={link} data-sveltekit-preload-data="hover" data-sveltekit-reload>
+	<a href={link} data-sveltekit-preload-data="hover">
 		<figure>
 			<img src={image} alt={title} />
 		</figure>
@@ -15,8 +15,8 @@
 	<section>
 		<h3>{title}</h3>
 		<p>{description}</p>
-		<a href={link} class="werkvorm-link" data-sveltekit-preload-data="hover" data-sveltekit-reload><ArrowIcon />Bekijk werkvorm</a>
-		<a href={link} class="werkvorm-link" data-sveltekit-preload-data="hover" data-sveltekit-reload><ArrowIcon />Bekijk Introvideo</a>
+		<a href={link} class="werkvorm-link" data-sveltekit-preload-data="hover"><ArrowIcon />Bekijk werkvorm</a>
+		<a href={link} class="werkvorm-link" data-sveltekit-preload-data="hover"><ArrowIcon />Bekijk Introvideo</a>
 		<div>
 			<slot />
 		</div>

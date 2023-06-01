@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 
 	// TODO: Betere manier doen
-	const werkvormTitle = $page.url.pathname
+	$: werkvormTitle = $page.url.pathname
 		.replace('/', '')
 		.replace('werkvorm-', '')
 		.split('-')
@@ -11,9 +11,9 @@
 
 <header>
 	<div>
-		<a href="/" data-sveltekit-preload-data="hover" data-sveltekit-reload
-			><img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" /></a
-		>
+		<a href="/" data-sveltekit-preload-data="hover">
+			<img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" />
+			</a>
 		<nav>
 			<a href="https://www.hva.nl/" target="_blank" rel="noopener noreferrer">HvA</a> / Informatie /
 			<a href="/">Werkvormen & thema's</a>
