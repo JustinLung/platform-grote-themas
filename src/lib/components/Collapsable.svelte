@@ -9,7 +9,10 @@
 	}
 </script>
 
-<button on:click={toggleCollapsable}>{title}</button>
+<button on:click={toggleCollapsable}>
+	<span class:toggle={collapsed} />
+	{title}
+</button>
 <div class="content {!collapsed && 'open'}" style="--mh: {content?.clientHeight}px">
 	<nav bind:this={content}>
 		<slot />
@@ -28,6 +31,31 @@
 		position: relative;
 	}
 
+	span {
+		width: 20px;
+		height: 3px;
+		background: var(--color-white);
+		position: relative;
+		transition: 0.25s transform cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	span::after {
+		content: '';
+		width: 20px;
+		transition: 0.25s transform cubic-bezier(0.16, 1, 0.3, 1);
+		transition-delay: 0.1s;
+		height: 3px;
+		position: absolute;
+		transform: rotate(0deg);
+		background: var(--color-white);
+		left: 0;
+	}
+
+	span.toggle::after {
+		opacity: 1;
+		transform: rotate(90deg);
+	}
+
 	button {
 		cursor: pointer;
 		display: flex;
@@ -40,6 +68,11 @@
 		background-color: var(--color-navy-blue);
 		padding: 1.5rem;
 		font-size: 1rem;
+
+		display: flex;
+		flex-direction: row;
+		gap: 0.5rem;
+		align-items: center;
 	}
 
 	nav {

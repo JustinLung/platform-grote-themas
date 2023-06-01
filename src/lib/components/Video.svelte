@@ -11,6 +11,7 @@
 <style>
 	video {
 		width: 60%;
+		border-radius: .2rem;
 	}
 
 	@media (max-width: 55rem) {

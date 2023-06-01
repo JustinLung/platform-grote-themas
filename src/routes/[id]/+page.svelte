@@ -2,24 +2,16 @@
 	import Tag from '$lib/components/Tag.svelte';
 	import Video from '$lib/components/Video.svelte';
 	import PaperclipIcon from '$lib/icons/paperclip.svg?component';
-	export let email: string = 'naam.achternaam@hva.nl';
-	export let faculteit: string = 'FDMCI';
-	export let opleiding: string = 'CMD';
-	export let materiaal: string = 'materiaal';
-	export let description: string =
-		'hier komt een korste omschrijving over de werkvorm of het thema. Er kan van alles staan maar voor nu staat hier een random tekst die eigenlijk nergens over staat maar er puur voor dient om content op te vullen. Zo lijkt het toch nog wat en is het design mooier om naar te loeren.';
 
 	export let data;
-
-	console.log(data);
 </script>
 
 <section>
 	<div>
 		<h3>Contactpersoon</h3>
 		{#each data.contactpersonen as contactpersoon}
-			<p>{contactpersoon.voornaam} {contactpersoon.achternaam}</p>
-			<a href="mailto:{contactpersoon.email}">{contactpersoon.email}</a>
+			<p>Naam: {contactpersoon.voornaam} {contactpersoon.achternaam}</p>
+			<p>Email: <a href="mailto:{contactpersoon.email}">{contactpersoon.email}</a></p>
 		{/each}
 		<h3>Faculteit/opleiding</h3>
 		<span>{data.opleiding?.faculteit?.titel} - {data.opleiding?.titel}</span>
@@ -45,6 +37,10 @@
 		padding: 2rem;
 		display: flex;
 		justify-content: space-between;
+	}
+
+	h3 {
+		font-size: 1.5rem;
 	}
 
 	.material {

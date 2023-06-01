@@ -1,9 +1,8 @@
 <script lang="ts">
-	export let navTitle: string = '';
 	import { page } from '$app/stores';
 
 	// TODO: Betere manier doen
-	const werkvormTitle = $page.url.pathname
+	$: werkvormTitle = $page.url.pathname
 		.replace('/', '')
 		.replace('werkvorm-', '')
 		.split('-')
@@ -12,8 +11,13 @@
 
 <header>
 	<div>
-		<img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" />
-		<div>Hva / Informatie / Werkvormen & thema's {navTitle}</div>
+		<a href="/" data-sveltekit-preload-data="hover">
+			<img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" />
+		</a>
+		<nav>
+			<a href="https://www.hva.nl/" target="_blank" rel="noopener noreferrer">HvA</a> / Informatie /
+			<a href="/">Werkvormen & thema's</a>
+		</nav>
 		<h1>
 			{$page.url.pathname === '/'
 				? "Werkvormen & Thema's"
@@ -34,11 +38,15 @@
 		max-width: 10rem;
 	}
 
+	a {
+		text-decoration: none !important;
+	}
+
 	div {
 		padding: 2rem;
 	}
 
-	div {
+	nav {
 		padding: 1rem 0;
 	}
 
@@ -52,6 +60,10 @@
 
 	p {
 		max-width: 30rem;
+	}
+
+	a {
+		text-decoration: underline;
 	}
 
 	.graphic {

@@ -7,14 +7,20 @@
 </script>
 
 <article>
-	<figure>
-		<img src={image} alt={title} />
-	</figure>
+	<a href={link} data-sveltekit-preload-data="hover">
+		<figure>
+			<img src={image} alt={title} />
+		</figure>
+	</a>
 	<section>
 		<h3>{title}</h3>
 		<p>{description}</p>
-		<a href={link} class="werkvorm-link"><ArrowIcon />Bekijk werkvorm</a>
-		<a href={link} class="werkvorm-link"><ArrowIcon />Bekijk Introvideo</a>
+		<a href={link} class="werkvorm-link" data-sveltekit-preload-data="hover"
+			><ArrowIcon />Bekijk werkvorm</a
+		>
+		<a href={link} class="werkvorm-link" data-sveltekit-preload-data="hover"
+			><ArrowIcon />Bekijk Introvideo</a
+		>
 		<div>
 			<slot />
 		</div>
@@ -38,6 +44,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		border-radius: 0.2rem;
 	}
 
 	h3 {
@@ -59,7 +66,6 @@
 		align-items: center;
 		gap: 1rem;
 		font-weight: 700;
-		text-decoration: underline;
 	}
 
 	:global(svg) {

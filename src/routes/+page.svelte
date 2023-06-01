@@ -1,18 +1,21 @@
 <script lang="ts">
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import WerkvormSection from '$lib/components/WerkvormSection.svelte';
+	import BackToTop from '$lib/components/BackToTop.svelte';
 
 	export let data;
 </script>
 
 <section>
-	<div>
+	<div class="sidebar-container">
 		<Sidebar />
 	</div>
 	<div>
 		<WerkvormSection werkvormen={data.werkvormen.werkvormen} />
 	</div>
 </section>
+
+<BackToTop />
 
 <style>
 	section {
@@ -23,9 +26,11 @@
 		width: 100%;
 		gap: 2rem;
 	}
+
 	div {
 		width: 100%;
 	}
+
 	div:nth-child(2) {
 		flex: 1;
 	}
