@@ -6,13 +6,19 @@
 
 <svelte:window bind:scrollY={y} />
 {#if y >= 80}
-	<a href="/#" transition:scale>
-		<ArrowIcon />
-	</a>
+	<button
+		transition:scale|local
+		on:click={() => {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		}}><ArrowIcon /></button
+	>
 {/if}
 
 <style>
-	a {
+	button {
 		position: fixed;
 		bottom: 2rem;
 		right: 2rem;
@@ -28,7 +34,7 @@
 		transition: 100ms background-color ease-out;
 	}
 
-	a:hover {
+	button:hover {
 		background-color: transparent;
 	}
 </style>
