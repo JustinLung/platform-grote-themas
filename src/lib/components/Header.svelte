@@ -1,5 +1,4 @@
 <script lang="ts">
-	export let navTitle: string = '';
 	import { page } from '$app/stores';
 
 	// TODO: Betere manier doen
@@ -12,8 +11,13 @@
 
 <header>
 	<div>
-		<a href="/" data-sveltekit-preload-data="hover" data-sveltekit-reload><img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" /></a>
-		<div>Hva / Informatie / Werkvormen & thema's {navTitle}</div>
+		<a href="/" data-sveltekit-preload-data="hover" data-sveltekit-reload
+			><img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" /></a
+		>
+		<nav>
+			<a href="https://www.hva.nl/" target="_blank" rel="noopener noreferrer">HvA</a> / Informatie /
+			<a href="/">Werkvormen & thema's</a>
+		</nav>
 		<h1>
 			{$page.url.pathname === '/'
 				? "Werkvormen & Thema's"
@@ -34,11 +38,15 @@
 		max-width: 10rem;
 	}
 
+	a {
+		text-decoration: none !important;
+	}
+
 	div {
 		padding: 2rem;
 	}
 
-	div {
+	nav {
 		padding: 1rem 0;
 	}
 
