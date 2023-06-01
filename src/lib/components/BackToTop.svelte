@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { slide } from 'svelte/transition';
+	import { scale } from 'svelte/transition';
 	import ArrowIcon from '$lib/icons/arrow.svg?component';
-	let y: any;
+	let y: number;
 </script>
 
 <svelte:window bind:scrollY={y} />
 {#if y >= 80}
-	<a href="/#" transition:slide>
+	<a href="/#" transition:scale>
 		<ArrowIcon />
 	</a>
 {/if}

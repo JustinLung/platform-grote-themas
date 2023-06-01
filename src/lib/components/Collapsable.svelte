@@ -10,9 +10,9 @@
 </script>
 
 <button on:click={toggleCollapsable}>
-	<span class:toggle={collapsed}/>
-	{title}</button
->
+	<span class:toggle={collapsed} />
+	{title}
+</button>
 <div class="content {!collapsed && 'open'}" style="--mh: {content?.clientHeight}px">
 	<nav bind:this={content}>
 		<slot />
