@@ -24,5 +24,11 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+		border: 1px solid var(--color-navy-blue);
+		transition: 100ms background-color ease-out;
+	}
+
+	a:hover {
+		background-color: transparent;
 	}
 </style>
