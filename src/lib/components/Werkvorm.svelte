@@ -61,7 +61,6 @@
 		align-items: center;
 		gap: 1rem;
 		font-weight: 700;
-		text-decoration: underline;
 	}
 
 	:global(svg) {
