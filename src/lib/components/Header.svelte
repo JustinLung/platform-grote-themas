@@ -12,7 +12,7 @@
 
 <header>
 	<div>
-		<img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" />
+		<a href="/" data-sveltekit-preload-data="hover" data-sveltekit-reload><img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" /></a>
 		<div>Hva / Informatie / Werkvormen & thema's {navTitle}</div>
 		<h1>
 			{$page.url.pathname === '/'
@@ -52,6 +52,10 @@
 
 	p {
 		max-width: 30rem;
+	}
+
+	a {
+		text-decoration: underline;
 	}
 
 	.graphic {

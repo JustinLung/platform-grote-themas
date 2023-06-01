@@ -14,7 +14,7 @@
 		{#if !$filteredWerkvormen.length && !$searchterm}
 			<p>Er zijn nog geen bestaande werkvormen</p>
 		{:else if !$filteredWerkvormen.length && $searchterm}
-			<p>Er zijn geen werkvormen gevonden met de zoekterm: {$searchterm}</p>
+			<p>Er zijn geen werkvormen gevonden met de zoekterm: <span>{$searchterm}</span></p>
 		{:else}
 			{#each $filteredWerkvormen as werkvorm}
 				<!-- TODO: Slug from Hygraph -->
@@ -42,6 +42,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	span {
+		color: var(--color-hva-red);
+		text-decoration: underline;
 	}
 
 	@media (max-width: 55rem) {

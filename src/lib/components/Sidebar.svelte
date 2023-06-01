@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Collapsable from './Collapsable.svelte';
+	import SearchIcon from '$lib/icons/search.svg?component';
 	import { onderwerpen, focus, doel, fase } from '$lib/data/categories';
 	import { searchterm } from '../../state/filter';
 	function handleSearch(e: KeyboardEvent) {
@@ -10,7 +11,10 @@
 
 <aside>
 	<h2>Zoeken</h2>
-	<input on:keyup={handleSearch} type="search" placeholder="Zoek op werkvormen en thema's" />
+	<div class="input-container">
+		<SearchIcon class="search-icon"/>
+		<input on:keyup={handleSearch} type="search" placeholder="Zoek op werkvormen en thema's" />
+	</div>
 	<div>
 		<Collapsable title="Onderwerp">
 			{#each onderwerpen as onderwerp}
@@ -44,9 +48,21 @@
 		all: unset;
 		background-color: var(--color-white);
 		color: var(--color-navy-blue);
-		padding: 0.5rem 0;
 		width: 100%;
+		height: 100%;
+		padding: 0;
+	}
+
+	.input-container {
+		background-color: var(--color-white);
+		color: var(--color-navy-blue);
+		padding: .5rem 1rem;
 		margin-bottom: 1rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
 	}
 
 	a {

@@ -1,0 +1,28 @@
+<script lang="ts">
+	import { slide } from 'svelte/transition';
+	import ArrowIcon from '$lib/icons/arrow.svg?component';
+	let y: any;
+</script>
+
+<svelte:window bind:scrollY={y} />
+{#if y >= 80}
+	<a href="/#" transition:slide>
+		<ArrowIcon />
+	</a>
+{/if}
+
+<style>
+	a {
+		position: fixed;
+		bottom: 2rem;
+		right: 2rem;
+		transform: rotate(-90deg);
+		background-color: var(--color-navy-blue);
+		padding: 1rem;
+		border-radius: 50%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+</style>

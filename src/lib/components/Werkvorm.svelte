@@ -7,14 +7,16 @@
 </script>
 
 <article>
-	<figure>
-		<img src={image} alt={title} />
-	</figure>
+	<a href={link} data-sveltekit-preload-data="hover" data-sveltekit-reload>
+		<figure>
+			<img src={image} alt={title} />
+		</figure>
+	</a>
 	<section>
 		<h3>{title}</h3>
 		<p>{description}</p>
-		<a href={link} class="werkvorm-link"><ArrowIcon />Bekijk werkvorm</a>
-		<a href={link} class="werkvorm-link"><ArrowIcon />Bekijk Introvideo</a>
+		<a href={link} class="werkvorm-link" data-sveltekit-preload-data="hover" data-sveltekit-reload><ArrowIcon />Bekijk werkvorm</a>
+		<a href={link} class="werkvorm-link" data-sveltekit-preload-data="hover" data-sveltekit-reload><ArrowIcon />Bekijk Introvideo</a>
 		<div>
 			<slot />
 		</div>
