@@ -3,6 +3,8 @@
 	import SearchIcon from '$lib/icons/search.svg?component';
 	import { onderwerpen, focus, doel, fase } from '$lib/data/categories';
 	import { searchterm, tag } from '../state/filter';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	function handleSearch(e: KeyboardEvent) {
 		const value = (e.target as HTMLInputElement).value;
@@ -17,7 +19,12 @@
 		<input on:keyup={handleSearch} type="search" placeholder="Zoek op werkvormen en thema's" />
 	</div>
 	{#if $tag}
-		<button on:click={() => tag.set('')}>x {$tag}</button>
+		<button
+			on:click={() => {
+				goto('/');
+				tag.set('');
+			}}>x {$tag}</button
+		>
 	{/if}
 	<div>
 		<Collapsable title="Onderwerp">

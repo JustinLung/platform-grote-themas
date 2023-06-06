@@ -4,13 +4,15 @@
 	import BackToTop from '$lib/components/BackToTop.svelte';
 	import { page } from '$app/stores';
 	import { tag } from '$lib/state/filter';
+	import { browser } from '$app/environment';
 
 	export let data;
 
-	page.subscribe(({ url }) => {
-		const filter = url.searchParams.get('tag') ?? '';
-		tag.set(filter);
-	});
+	$: _tag = browser && $page.url.searchParams.get('tag');
+
+	$: {
+		_tag && tag.set(_tag);
+	}
 </script>
 
 <section>
