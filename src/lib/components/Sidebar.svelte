@@ -2,7 +2,10 @@
 	import Collapsable from './Collapsable.svelte';
 	import SearchIcon from '$lib/icons/search.svg?component';
 	import { onderwerpen, focus, doel, fase } from '$lib/data/categories';
-	import { searchterm } from '../../state/filter';
+	import { searchterm, tag } from '../state/filter';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+
 	function handleSearch(e: KeyboardEvent) {
 		const value = (e.target as HTMLInputElement).value;
 		searchterm.set(value);
@@ -12,9 +15,17 @@
 <aside>
 	<h2>Zoeken</h2>
 	<div class="input-container">
-		<SearchIcon class="search-icon"/>
+		<SearchIcon class="search-icon" />
 		<input on:keyup={handleSearch} type="search" placeholder="Zoek op werkvormen en thema's" />
 	</div>
+	{#if $tag}
+		<button
+			on:click={() => {
+				goto('/');
+				tag.set('');
+			}}>x {$tag}</button
+		>
+	{/if}
 	<div>
 		<Collapsable title="Onderwerp">
 			{#each onderwerpen as onderwerp}
@@ -56,7 +67,7 @@
 	.input-container {
 		background-color: var(--color-white);
 		color: var(--color-navy-blue);
-		padding: .5rem 1rem;
+		padding: 0.5rem 1rem;
 		margin-bottom: 1rem;
 		display: flex;
 		flex-direction: row;

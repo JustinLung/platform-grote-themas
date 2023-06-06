@@ -25,7 +25,7 @@
 		<p>{data.beschrijving}</p>
 		<div class="tags">
 			{#each data.tags as tag}
-				<Tag title={tag.split('_').join(' ')} color="var(--color-hva-light-blue)" link="/" />
+				<Tag title={tag.titel} link="/?tag={tag.waarde}" color={tag.kleur?.hex} />
 			{/each}
 		</div>
 	</div>

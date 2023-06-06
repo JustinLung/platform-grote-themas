@@ -2,8 +2,17 @@
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import WerkvormSection from '$lib/components/WerkvormSection.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
+	import { page } from '$app/stores';
+	import { tag } from '$lib/state/filter';
+	import { browser } from '$app/environment';
 
 	export let data;
+
+	$: _tag = browser && $page.url.searchParams.get('tag');
+
+	$: {
+		_tag && tag.set(_tag);
+	}
 </script>
 
 <section>
