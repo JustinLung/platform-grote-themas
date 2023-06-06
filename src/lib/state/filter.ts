@@ -1,5 +1,3 @@
-import Tag from '$lib/components/Tag.svelte';
-import type { Tags } from '$lib/graphql/generated/sdk';
 import type { WerkvormFragment } from '$lib/graphql/generated/sdk';
 import { derived, get, writable, type Writable } from 'svelte/store';
 
