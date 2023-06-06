@@ -19,8 +19,6 @@ export const filteredWerkvormen = derived(
 					: true;
 
 			const tagged = $tag !== '' ? werkvorm.tags.some((tag) => tag.waarde === $tag) : true;
-			// console.log(tagged);
-
 			return found && tagged;
 		});
 	}
