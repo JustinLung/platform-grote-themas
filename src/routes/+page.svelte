@@ -2,8 +2,15 @@
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import WerkvormSection from '$lib/components/WerkvormSection.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
+	import { page } from '$app/stores';
+	import { tag } from '$lib/state/filter';
 
 	export let data;
+
+	page.subscribe(({ url }) => {
+		const filter = url.searchParams.get('tag') ?? '';
+		tag.set(filter);
+	});
 </script>
 
 <section>

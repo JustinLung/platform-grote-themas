@@ -5705,6 +5705,7 @@ export type Tag = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
+  kleur?: Maybe<Color>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** User that last published this document */
@@ -5713,11 +5714,13 @@ export type Tag = Node & {
   /** System stage field */
   stage: Stage;
   /** Titel voor de tag */
-  titel?: Maybe<Scalars['String']>;
+  titel: Scalars['String'];
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+  waarde?: Maybe<Scalars['String']>;
+  werkvormen: Array<Werkvorm>;
 };
 
 
@@ -5764,6 +5767,18 @@ export type TagUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
+
+export type TagWerkvormenArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WerkvormWhereInput>;
+};
+
 export type TagConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
@@ -5783,8 +5798,11 @@ export type TagConnection = {
 
 export type TagCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
-  titel?: InputMaybe<Scalars['String']>;
+  kleur?: InputMaybe<ColorInput>;
+  titel: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+  waarde?: InputMaybe<Scalars['String']>;
+  werkvormen?: InputMaybe<WerkvormCreateManyInlineInput>;
 };
 
 export type TagCreateManyInlineInput = {
@@ -5912,6 +5930,28 @@ export type TagManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  waarde?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  waarde_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  waarde_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  waarde_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  waarde_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  waarde_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  waarde_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  waarde_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  waarde_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  waarde_starts_with?: InputMaybe<Scalars['String']>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 export enum TagOrderByInput {
@@ -5924,11 +5964,16 @@ export enum TagOrderByInput {
   TitelAsc = 'titel_ASC',
   TitelDesc = 'titel_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
+  WaardeAsc = 'waarde_ASC',
+  WaardeDesc = 'waarde_DESC'
 }
 
 export type TagUpdateInput = {
+  kleur?: InputMaybe<ColorInput>;
   titel?: InputMaybe<Scalars['String']>;
+  waarde?: InputMaybe<Scalars['String']>;
+  werkvormen?: InputMaybe<WerkvormUpdateManyInlineInput>;
 };
 
 export type TagUpdateManyInlineInput = {
@@ -5949,6 +5994,7 @@ export type TagUpdateManyInlineInput = {
 };
 
 export type TagUpdateManyInput = {
+  kleur?: InputMaybe<ColorInput>;
   titel?: InputMaybe<Scalars['String']>;
 };
 
@@ -6103,6 +6149,28 @@ export type TagWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  waarde?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  waarde_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  waarde_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  waarde_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  waarde_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  waarde_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  waarde_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  waarde_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  waarde_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  waarde_starts_with?: InputMaybe<Scalars['String']>;
+  werkvormen_every?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_none?: InputMaybe<WerkvormWhereInput>;
+  werkvormen_some?: InputMaybe<WerkvormWhereInput>;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -6122,6 +6190,7 @@ export type TagWhereStageInput = {
 /** References Tag record uniquely */
 export type TagWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
+  waarde?: InputMaybe<Scalars['String']>;
 };
 
 export enum Tags {
@@ -7337,7 +7406,7 @@ export type Werkvorm = Node & {
   /** The unique identifier */
   id: Scalars['ID'];
   korteBeschrijving?: Maybe<Scalars['String']>;
-  link?: Maybe<Scalars['String']>;
+  link: Scalars['String'];
   materialen: Array<Asset>;
   opleiding?: Maybe<Opleiding>;
   /** The time the document was published. Null on documents in draft stage. */
@@ -7348,7 +7417,7 @@ export type Werkvorm = Node & {
   /** System stage field */
   stage: Stage;
   studiejaar?: Maybe<Scalars['Int']>;
-  tags: Array<Tags>;
+  tags: Array<WerkvormTags>;
   /**
    * Thumbnail voor de werkvorm
    *
@@ -7472,6 +7541,21 @@ export type WerkvormScheduledInArgs = {
  * Model voor werkvormen
  *
  */
+export type WerkvormTagsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+/**
+ * Model voor werkvormen
+ *
+ */
 export type WerkvormThumbnailArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -7529,11 +7613,11 @@ export type WerkvormCreateInput = {
   contactpersonen?: InputMaybe<ContactpersoonCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   korteBeschrijving?: InputMaybe<Scalars['String']>;
-  link?: InputMaybe<Scalars['String']>;
+  link: Scalars['String'];
   materialen?: InputMaybe<AssetCreateManyInlineInput>;
   opleiding?: InputMaybe<OpleidingCreateOneInlineInput>;
   studiejaar?: InputMaybe<Scalars['Int']>;
-  tags?: InputMaybe<Array<Tags>>;
+  tags?: InputMaybe<WerkvormTagsCreateManyInlineInput>;
   thumbnail: AssetCreateOneInlineInput;
   tijdsduur?: InputMaybe<TijdsduurCreateOneInlineInput>;
   title: Scalars['String'];
@@ -7710,16 +7794,10 @@ export type WerkvormManyWhereInput = {
   studiejaar_not?: InputMaybe<Scalars['Int']>;
   /** All values that are not contained in given list. */
   studiejaar_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
-  /** Matches if the field array contains *all* items provided to the filter and order does match */
-  tags?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array contains *all* items provided to the filter */
-  tags_contains_all?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array does not contain any of the items provided to the filter */
-  tags_contains_none?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array contains at least one item provided to the filter */
-  tags_contains_some?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-  tags_not?: InputMaybe<Array<Tags>>;
+  /** All values in which the union is empty */
+  tags_empty?: InputMaybe<Scalars['Boolean']>;
+  /** Matches if the union contains at least one connection to the provided item to the filter */
+  tags_some?: InputMaybe<WerkvormTagsWhereInput>;
   thumbnail?: InputMaybe<AssetWhereInput>;
   tijdsduur?: InputMaybe<TijdsduurWhereInput>;
   title?: InputMaybe<Scalars['String']>;
@@ -7775,13 +7853,91 @@ export enum WerkvormOrderByInput {
   PublishedAtDesc = 'publishedAt_DESC',
   StudiejaarAsc = 'studiejaar_ASC',
   StudiejaarDesc = 'studiejaar_DESC',
-  TagsAsc = 'tags_ASC',
-  TagsDesc = 'tags_DESC',
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC'
 }
+
+export type WerkvormTags = Tag;
+
+export type WerkvormTagsConnectInput = {
+  Tag?: InputMaybe<TagConnectInput>;
+};
+
+export type WerkvormTagsCreateInput = {
+  Tag?: InputMaybe<TagCreateInput>;
+};
+
+export type WerkvormTagsCreateManyInlineInput = {
+  /** Connect multiple existing WerkvormTags documents */
+  connect?: InputMaybe<Array<WerkvormTagsWhereUniqueInput>>;
+  /** Create and connect multiple existing WerkvormTags documents */
+  create?: InputMaybe<Array<WerkvormTagsCreateInput>>;
+};
+
+export type WerkvormTagsCreateOneInlineInput = {
+  /** Connect one existing WerkvormTags document */
+  connect?: InputMaybe<WerkvormTagsWhereUniqueInput>;
+  /** Create and connect one WerkvormTags document */
+  create?: InputMaybe<WerkvormTagsCreateInput>;
+};
+
+export type WerkvormTagsUpdateInput = {
+  Tag?: InputMaybe<TagUpdateInput>;
+};
+
+export type WerkvormTagsUpdateManyInlineInput = {
+  /** Connect multiple existing WerkvormTags documents */
+  connect?: InputMaybe<Array<WerkvormTagsConnectInput>>;
+  /** Create and connect multiple WerkvormTags documents */
+  create?: InputMaybe<Array<WerkvormTagsCreateInput>>;
+  /** Delete multiple WerkvormTags documents */
+  delete?: InputMaybe<Array<WerkvormTagsWhereUniqueInput>>;
+  /** Disconnect multiple WerkvormTags documents */
+  disconnect?: InputMaybe<Array<WerkvormTagsWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing WerkvormTags documents */
+  set?: InputMaybe<Array<WerkvormTagsWhereUniqueInput>>;
+  /** Update multiple WerkvormTags documents */
+  update?: InputMaybe<Array<WerkvormTagsUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple WerkvormTags documents */
+  upsert?: InputMaybe<Array<WerkvormTagsUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type WerkvormTagsUpdateManyWithNestedWhereInput = {
+  Tag?: InputMaybe<TagUpdateManyWithNestedWhereInput>;
+};
+
+export type WerkvormTagsUpdateOneInlineInput = {
+  /** Connect existing WerkvormTags document */
+  connect?: InputMaybe<WerkvormTagsWhereUniqueInput>;
+  /** Create and connect one WerkvormTags document */
+  create?: InputMaybe<WerkvormTagsCreateInput>;
+  /** Delete currently connected WerkvormTags document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected WerkvormTags document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single WerkvormTags document */
+  update?: InputMaybe<WerkvormTagsUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single WerkvormTags document */
+  upsert?: InputMaybe<WerkvormTagsUpsertWithNestedWhereUniqueInput>;
+};
+
+export type WerkvormTagsUpdateWithNestedWhereUniqueInput = {
+  Tag?: InputMaybe<TagUpdateWithNestedWhereUniqueInput>;
+};
+
+export type WerkvormTagsUpsertWithNestedWhereUniqueInput = {
+  Tag?: InputMaybe<TagUpsertWithNestedWhereUniqueInput>;
+};
+
+export type WerkvormTagsWhereInput = {
+  Tag?: InputMaybe<TagWhereInput>;
+};
+
+export type WerkvormTagsWhereUniqueInput = {
+  Tag?: InputMaybe<TagWhereUniqueInput>;
+};
 
 export type WerkvormUpdateInput = {
   beschrijving?: InputMaybe<Scalars['String']>;
@@ -7791,7 +7947,7 @@ export type WerkvormUpdateInput = {
   materialen?: InputMaybe<AssetUpdateManyInlineInput>;
   opleiding?: InputMaybe<OpleidingUpdateOneInlineInput>;
   studiejaar?: InputMaybe<Scalars['Int']>;
-  tags?: InputMaybe<Array<Tags>>;
+  tags?: InputMaybe<WerkvormTagsUpdateManyInlineInput>;
   thumbnail?: InputMaybe<AssetUpdateOneInlineInput>;
   tijdsduur?: InputMaybe<TijdsduurUpdateOneInlineInput>;
   title?: InputMaybe<Scalars['String']>;
@@ -7819,7 +7975,6 @@ export type WerkvormUpdateManyInput = {
   beschrijving?: InputMaybe<Scalars['String']>;
   korteBeschrijving?: InputMaybe<Scalars['String']>;
   studiejaar?: InputMaybe<Scalars['Int']>;
-  tags?: InputMaybe<Array<Tags>>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -8018,16 +8173,10 @@ export type WerkvormWhereInput = {
   studiejaar_not?: InputMaybe<Scalars['Int']>;
   /** All values that are not contained in given list. */
   studiejaar_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
-  /** Matches if the field array contains *all* items provided to the filter and order does match */
-  tags?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array contains *all* items provided to the filter */
-  tags_contains_all?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array does not contain any of the items provided to the filter */
-  tags_contains_none?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array contains at least one item provided to the filter */
-  tags_contains_some?: InputMaybe<Array<Tags>>;
-  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-  tags_not?: InputMaybe<Array<Tags>>;
+  /** All values in which the union is empty */
+  tags_empty?: InputMaybe<Scalars['Boolean']>;
+  /** Matches if the union contains at least one connection to the provided item to the filter */
+  tags_some?: InputMaybe<WerkvormTagsWhereInput>;
   thumbnail?: InputMaybe<AssetWhereInput>;
   tijdsduur?: InputMaybe<TijdsduurWhereInput>;
   title?: InputMaybe<Scalars['String']>;
@@ -8174,9 +8323,17 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
-export type WerkvormFragment = { __typename?: 'Werkvorm', title: string, beschrijving: string, tags: Array<Tags>, link?: string | null, thumbnail: { __typename?: 'Asset', url: string } };
+export type WerkvormFragment = { __typename?: 'Werkvorm', title: string, beschrijving: string, link: string, thumbnail: { __typename?: 'Asset', url: string }, tags: Array<(
+    { __typename?: 'Tag' }
+    & TagFragment
+  )> };
 
-export type WerkvormDetailFragment = { __typename?: 'Werkvorm', beschrijving: string, tags: Array<Tags>, contactpersonen: Array<{ __typename?: 'Contactpersoon', voornaam?: string | null, achternaam?: string | null, email: string }>, opleiding?: { __typename?: 'Opleiding', titel?: string | null, faculteit?: { __typename?: 'Faculteit', titel?: string | null } | null } | null, video?: { __typename?: 'Asset', url: string } | null, materialen: Array<{ __typename?: 'Asset', url: string }> };
+export type WerkvormDetailFragment = { __typename?: 'Werkvorm', beschrijving: string, contactpersonen: Array<{ __typename?: 'Contactpersoon', voornaam?: string | null, achternaam?: string | null, email: string }>, opleiding?: { __typename?: 'Opleiding', titel?: string | null, faculteit?: { __typename?: 'Faculteit', titel?: string | null } | null } | null, video?: { __typename?: 'Asset', url: string } | null, materialen: Array<{ __typename?: 'Asset', url: string }>, tags: Array<(
+    { __typename?: 'Tag' }
+    & TagFragment
+  )> };
+
+export type TagFragment = { __typename?: 'Tag', titel: string, waarde?: string | null, kleur?: { __typename?: 'Color', hex: any } | null };
 
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -8196,6 +8353,15 @@ export type DetailPageQuery = { __typename?: 'Query', werkvormen: Array<(
     & WerkvormDetailFragment
   )> };
 
+export const TagFragmentDoc = gql`
+    fragment Tag on Tag {
+  titel
+  kleur {
+    hex
+  }
+  waarde
+}
+    `;
 export const WerkvormFragmentDoc = gql`
     fragment Werkvorm on Werkvorm {
   title
@@ -8203,7 +8369,11 @@ export const WerkvormFragmentDoc = gql`
   thumbnail {
     url
   }
-  tags
+  tags {
+    ... on Tag {
+      ...Tag
+    }
+  }
   link
 }
     `;
@@ -8227,7 +8397,11 @@ export const WerkvormDetailFragmentDoc = gql`
   materialen {
     url
   }
-  tags
+  tags {
+    ... on Tag {
+      ...Tag
+    }
+  }
 }
     `;
 export const HomePageDocument = gql`
@@ -8236,14 +8410,16 @@ export const HomePageDocument = gql`
     ...Werkvorm
   }
 }
-    ${WerkvormFragmentDoc}`;
+    ${WerkvormFragmentDoc}
+${TagFragmentDoc}`;
 export const DetailPageDocument = gql`
     query DetailPage($link: String!) {
   werkvormen(where: {link: $link}) {
     ...WerkvormDetail
   }
 }
-    ${WerkvormDetailFragmentDoc}`;
+    ${WerkvormDetailFragmentDoc}
+${TagFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 

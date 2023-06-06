@@ -7600,6 +7600,7 @@ type Tag implements Node {
 
   """The unique identifier"""
   id: ID!
+  kleur: Color
 
   """The time the document was published. Null on documents in draft stage."""
   publishedAt: DateTime
@@ -7659,7 +7660,7 @@ type Tag implements Node {
   stage: Stage!
 
   """Titel voor de tag"""
-  titel: String
+  titel: String!
 
   """The time the document was updated"""
   updatedAt: DateTime!
@@ -7686,6 +7687,35 @@ type Tag implements Node {
     """
     locales: [Locale!]
   ): User
+  waarde: String
+  werkvormen(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `werkvormen` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    skip: Int
+    where: WerkvormWhereInput
+  ): [Werkvorm!]!
 }
 
 input TagConnectInput {
@@ -7711,8 +7741,11 @@ type TagConnection {
 
 input TagCreateInput {
   createdAt: DateTime
-  titel: String
+  kleur: ColorInput
+  titel: String!
   updatedAt: DateTime
+  waarde: String
+  werkvormen: WerkvormCreateManyInlineInput
 }
 
 input TagCreateManyInlineInput {
@@ -7884,6 +7917,37 @@ input TagManyWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  waarde: String
+
+  """All values containing the given string."""
+  waarde_contains: String
+
+  """All values ending with the given string."""
+  waarde_ends_with: String
+
+  """All values that are contained in given list."""
+  waarde_in: [String]
+
+  """Any other value that exists and is not equal to the given value."""
+  waarde_not: String
+
+  """All values not containing the given string."""
+  waarde_not_contains: String
+
+  """All values not ending with the given string"""
+  waarde_not_ends_with: String
+
+  """All values that are not contained in given list."""
+  waarde_not_in: [String]
+
+  """All values not starting with the given string."""
+  waarde_not_starts_with: String
+
+  """All values starting with the given string."""
+  waarde_starts_with: String
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 enum TagOrderByInput {
@@ -7897,10 +7961,15 @@ enum TagOrderByInput {
   titel_DESC
   updatedAt_ASC
   updatedAt_DESC
+  waarde_ASC
+  waarde_DESC
 }
 
 input TagUpdateInput {
+  kleur: ColorInput
   titel: String
+  waarde: String
+  werkvormen: WerkvormUpdateManyInlineInput
 }
 
 input TagUpdateManyInlineInput {
@@ -7929,6 +7998,7 @@ input TagUpdateManyInlineInput {
 }
 
 input TagUpdateManyInput {
+  kleur: ColorInput
   titel: String
 }
 
@@ -8138,6 +8208,37 @@ input TagWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  waarde: String
+
+  """All values containing the given string."""
+  waarde_contains: String
+
+  """All values ending with the given string."""
+  waarde_ends_with: String
+
+  """All values that are contained in given list."""
+  waarde_in: [String]
+
+  """Any other value that exists and is not equal to the given value."""
+  waarde_not: String
+
+  """All values not containing the given string."""
+  waarde_not_contains: String
+
+  """All values not ending with the given string"""
+  waarde_not_ends_with: String
+
+  """All values that are not contained in given list."""
+  waarde_not_in: [String]
+
+  """All values not starting with the given string."""
+  waarde_not_starts_with: String
+
+  """All values starting with the given string."""
+  waarde_starts_with: String
+  werkvormen_every: WerkvormWhereInput
+  werkvormen_none: WerkvormWhereInput
+  werkvormen_some: WerkvormWhereInput
 }
 
 """
@@ -8165,6 +8266,7 @@ input TagWhereStageInput {
 """References Tag record uniquely"""
 input TagWhereUniqueInput {
   id: ID
+  waarde: String
 }
 
 enum Tags {
@@ -9865,7 +9967,7 @@ type Werkvorm implements Node {
   """The unique identifier"""
   id: ID!
   korteBeschrijving: String
-  link: String
+  link: String!
   materialen(
     after: String
     before: String
@@ -9974,7 +10076,33 @@ type Werkvorm implements Node {
   """System stage field"""
   stage: Stage!
   studiejaar: Int
-  tags: [Tags!]!
+  tags(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `tags` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `tags` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    skip: Int
+  ): [WerkvormTags!]!
 
   "Thumbnail voor de werkvorm\n"
   thumbnail(
@@ -10099,11 +10227,11 @@ input WerkvormCreateInput {
   contactpersonen: ContactpersoonCreateManyInlineInput
   createdAt: DateTime
   korteBeschrijving: String
-  link: String
+  link: String!
   materialen: AssetCreateManyInlineInput
   opleiding: OpleidingCreateOneInlineInput
   studiejaar: Int
-  tags: [Tags!]
+  tags: WerkvormTagsCreateManyInlineInput
   thumbnail: AssetCreateOneInlineInput!
   tijdsduur: TijdsduurCreateOneInlineInput
   title: String!
@@ -10343,28 +10471,13 @@ input WerkvormManyWhereInput {
   """All values that are not contained in given list."""
   studiejaar_not_in: [Int]
 
-  """
-  Matches if the field array contains *all* items provided to the filter and order does match
-  """
-  tags: [Tags!]
-
-  """Matches if the field array contains *all* items provided to the filter"""
-  tags_contains_all: [Tags!]
+  """All values in which the union is empty"""
+  tags_empty: Boolean
 
   """
-  Matches if the field array does not contain any of the items provided to the filter
+  Matches if the union contains at least one connection to the provided item to the filter
   """
-  tags_contains_none: [Tags!]
-
-  """
-  Matches if the field array contains at least one item provided to the filter
-  """
-  tags_contains_some: [Tags!]
-
-  """
-  Matches if the field array does not contains *all* items provided to the filter or order does not match
-  """
-  tags_not: [Tags!]
+  tags_some: WerkvormTagsWhereInput
   thumbnail: AssetWhereInput
   tijdsduur: TijdsduurWhereInput
   title: String
@@ -10436,12 +10549,105 @@ enum WerkvormOrderByInput {
   publishedAt_DESC
   studiejaar_ASC
   studiejaar_DESC
-  tags_ASC
-  tags_DESC
   title_ASC
   title_DESC
   updatedAt_ASC
   updatedAt_DESC
+}
+
+union WerkvormTags = Tag
+
+input WerkvormTagsConnectInput {
+  Tag: TagConnectInput
+}
+
+input WerkvormTagsCreateInput {
+  Tag: TagCreateInput
+}
+
+input WerkvormTagsCreateManyInlineInput {
+  """Connect multiple existing WerkvormTags documents"""
+  connect: [WerkvormTagsWhereUniqueInput!]
+
+  """Create and connect multiple existing WerkvormTags documents"""
+  create: [WerkvormTagsCreateInput!]
+}
+
+input WerkvormTagsCreateOneInlineInput {
+  """Connect one existing WerkvormTags document"""
+  connect: WerkvormTagsWhereUniqueInput
+
+  """Create and connect one WerkvormTags document"""
+  create: WerkvormTagsCreateInput
+}
+
+input WerkvormTagsUpdateInput {
+  Tag: TagUpdateInput
+}
+
+input WerkvormTagsUpdateManyInlineInput {
+  """Connect multiple existing WerkvormTags documents"""
+  connect: [WerkvormTagsConnectInput!]
+
+  """Create and connect multiple WerkvormTags documents"""
+  create: [WerkvormTagsCreateInput!]
+
+  """Delete multiple WerkvormTags documents"""
+  delete: [WerkvormTagsWhereUniqueInput!]
+
+  """Disconnect multiple WerkvormTags documents"""
+  disconnect: [WerkvormTagsWhereUniqueInput!]
+
+  """
+  Override currently-connected documents with multiple existing WerkvormTags documents
+  """
+  set: [WerkvormTagsWhereUniqueInput!]
+
+  """Update multiple WerkvormTags documents"""
+  update: [WerkvormTagsUpdateWithNestedWhereUniqueInput!]
+
+  """Upsert multiple WerkvormTags documents"""
+  upsert: [WerkvormTagsUpsertWithNestedWhereUniqueInput!]
+}
+
+input WerkvormTagsUpdateManyWithNestedWhereInput {
+  Tag: TagUpdateManyWithNestedWhereInput
+}
+
+input WerkvormTagsUpdateOneInlineInput {
+  """Connect existing WerkvormTags document"""
+  connect: WerkvormTagsWhereUniqueInput
+
+  """Create and connect one WerkvormTags document"""
+  create: WerkvormTagsCreateInput
+
+  """Delete currently connected WerkvormTags document"""
+  delete: Boolean
+
+  """Disconnect currently connected WerkvormTags document"""
+  disconnect: Boolean
+
+  """Update single WerkvormTags document"""
+  update: WerkvormTagsUpdateWithNestedWhereUniqueInput
+
+  """Upsert single WerkvormTags document"""
+  upsert: WerkvormTagsUpsertWithNestedWhereUniqueInput
+}
+
+input WerkvormTagsUpdateWithNestedWhereUniqueInput {
+  Tag: TagUpdateWithNestedWhereUniqueInput
+}
+
+input WerkvormTagsUpsertWithNestedWhereUniqueInput {
+  Tag: TagUpsertWithNestedWhereUniqueInput
+}
+
+input WerkvormTagsWhereInput {
+  Tag: TagWhereInput
+}
+
+input WerkvormTagsWhereUniqueInput {
+  Tag: TagWhereUniqueInput
 }
 
 input WerkvormUpdateInput {
@@ -10452,7 +10658,7 @@ input WerkvormUpdateInput {
   materialen: AssetUpdateManyInlineInput
   opleiding: OpleidingUpdateOneInlineInput
   studiejaar: Int
-  tags: [Tags!]
+  tags: WerkvormTagsUpdateManyInlineInput
   thumbnail: AssetUpdateOneInlineInput
   tijdsduur: TijdsduurUpdateOneInlineInput
   title: String
@@ -10488,7 +10694,6 @@ input WerkvormUpdateManyInput {
   beschrijving: String
   korteBeschrijving: String
   studiejaar: Int
-  tags: [Tags!]
   title: String
 }
 
@@ -10761,28 +10966,13 @@ input WerkvormWhereInput {
   """All values that are not contained in given list."""
   studiejaar_not_in: [Int]
 
-  """
-  Matches if the field array contains *all* items provided to the filter and order does match
-  """
-  tags: [Tags!]
-
-  """Matches if the field array contains *all* items provided to the filter"""
-  tags_contains_all: [Tags!]
+  """All values in which the union is empty"""
+  tags_empty: Boolean
 
   """
-  Matches if the field array does not contain any of the items provided to the filter
+  Matches if the union contains at least one connection to the provided item to the filter
   """
-  tags_contains_none: [Tags!]
-
-  """
-  Matches if the field array contains at least one item provided to the filter
-  """
-  tags_contains_some: [Tags!]
-
-  """
-  Matches if the field array does not contains *all* items provided to the filter or order does not match
-  """
-  tags_not: [Tags!]
+  tags_some: WerkvormTagsWhereInput
   thumbnail: AssetWhereInput
   tijdsduur: TijdsduurWhereInput
   title: String

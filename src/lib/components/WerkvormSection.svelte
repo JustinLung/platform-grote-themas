@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { WerkvormFragment } from '$lib/graphql/generated/sdk';
-	import { filteredWerkvormen, searchterm, werkvormenStore } from '../../state/filter';
+	import { filteredWerkvormen, searchterm, werkvormenStore } from '../state/filter';
 	import Tag from './Tag.svelte';
 	import Werkvorm from './Werkvorm.svelte';
 
@@ -17,16 +17,15 @@
 			<p>Er zijn geen werkvormen gevonden met de zoekterm: <span>{$searchterm}</span></p>
 		{:else}
 			{#each $filteredWerkvormen as werkvorm}
-				<!-- TODO: Slug from Hygraph -->
 				<Werkvorm
 					title={werkvorm.title}
 					description={werkvorm.beschrijving}
-					link={`/${werkvorm.link}` || '/'}
+					link="/{werkvorm.link}"
 					image={werkvorm.thumbnail.url}
 				>
-					<Tag title="Ik" color="var(--color-hva-light-blue)" link="/" />
-					<Tag title="Persoonlijke Intresses" color="var(--color-hva-red)" link="/" />
-					<Tag title="Duurzaamheid" color="var(--color-hva-teal)" link="/" />
+					{#each werkvorm.tags as tag}
+						<Tag title={tag.titel} link="/?tag={tag.waarde}" color={tag.kleur?.hex} />
+					{/each}
 				</Werkvorm>
 			{/each}
 		{/if}

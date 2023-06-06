@@ -4,7 +4,11 @@ fragment Werkvorm on Werkvorm {
 	thumbnail {
 		url
 	}
-	tags
+	tags {
+		... on Tag {
+			...Tag
+		}
+	}
 	link
 }
 
@@ -27,5 +31,17 @@ fragment WerkvormDetail on Werkvorm {
 	materialen {
 		url
 	}
-	tags
+	tags {
+		... on Tag {
+			...Tag
+		}
+	}
+}
+
+fragment Tag on Tag {
+	titel
+	kleur {
+		hex
+	}
+	waarde
 }
