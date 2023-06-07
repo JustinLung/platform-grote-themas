@@ -8353,6 +8353,14 @@ export type DetailPageQuery = { __typename?: 'Query', werkvormen: Array<(
     & WerkvormDetailFragment
   )> };
 
+export type GetTagsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTagsQuery = { __typename?: 'Query', tags: Array<(
+    { __typename?: 'Tag' }
+    & TagFragment
+  )> };
+
 export const TagFragmentDoc = gql`
     fragment Tag on Tag {
   titel
@@ -8420,6 +8428,13 @@ export const DetailPageDocument = gql`
 }
     ${WerkvormDetailFragmentDoc}
 ${TagFragmentDoc}`;
+export const GetTagsDocument = gql`
+    query getTags {
+  tags {
+    ...Tag
+  }
+}
+    ${TagFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -8433,6 +8448,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     DetailPage(variables: DetailPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DetailPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<DetailPageQuery>(DetailPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DetailPage', 'query');
+    },
+    getTags(variables?: GetTagsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetTagsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetTagsQuery>(GetTagsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getTags', 'query');
     }
   };
 }
@@ -8446,6 +8464,9 @@ export function getSdkWithHooks(client: GraphQLClient, withWrapper: SdkFunctionW
     },
     useDetailPage(key: SWRKeyInterface, variables: DetailPageQueryVariables, config?: SWRConfigInterface<DetailPageQuery, ClientError>) {
       return useSWR<DetailPageQuery, ClientError>(key, () => sdk.DetailPage(variables), config);
+    },
+    useGetTags(key: SWRKeyInterface, variables?: GetTagsQueryVariables, config?: SWRConfigInterface<GetTagsQuery, ClientError>) {
+      return useSWR<GetTagsQuery, ClientError>(key, () => sdk.getTags(variables), config);
     }
   };
 }

@@ -1,8 +1,8 @@
-import type { WerkvormFragment } from '$lib/graphql/generated/sdk';
+import type { TagFragment, WerkvormFragment } from '$lib/graphql/generated/sdk';
 import { derived, get, writable, type Writable } from 'svelte/store';
 
 export const searchterm = writable('');
-export const tag = writable('');
+export const tag: Writable<TagFragment | undefined> = writable();
 
 export const werkvormenStore: Writable<WerkvormFragment[]> = writable([]);
 
@@ -16,7 +16,8 @@ export const filteredWerkvormen = derived(
 					? werkvorm.title.toLowerCase().includes(get(searchterm).toLowerCase())
 					: true;
 
-			const tagged = $tag !== '' ? werkvorm.tags.some((tag) => tag.waarde === $tag) : true;
+			const tagged =
+				$tag && $tag.waarde !== '' ? werkvorm.tags.some((tag) => tag.waarde === $tag.waarde) : true;
 			return found && tagged;
 		});
 	}
