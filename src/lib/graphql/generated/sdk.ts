@@ -8323,7 +8323,7 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
-export type WerkvormFragment = { __typename?: 'Werkvorm', title: string, beschrijving: string, link: string, thumbnail: { __typename?: 'Asset', url: string }, tags: Array<(
+export type WerkvormFragment = { __typename?: 'Werkvorm', title: string, beschrijving: string, link: string, thumbnail: { __typename?: 'Asset', jpg: string, webp: string }, tags: Array<(
     { __typename?: 'Tag' }
     & TagFragment
   )> };
@@ -8375,7 +8375,12 @@ export const WerkvormFragmentDoc = gql`
   title
   beschrijving
   thumbnail {
-    url
+    jpg: url(
+      transformation: {image: {resize: {width: 500, fit: clip}}, document: {output: {format: jpg}}, validateOptions: true}
+    )
+    webp: url(
+      transformation: {image: {resize: {width: 500, fit: clip}}, document: {output: {format: webp}}, validateOptions: true}
+    )
   }
   tags {
     ... on Tag {
