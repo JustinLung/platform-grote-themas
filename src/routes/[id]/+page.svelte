@@ -18,7 +18,9 @@
 		{#if data.materialen.length}
 			<h3>Download materialen</h3>
 			{#each data.materialen as materiaal, i}
-				<a href={materiaal.url} class="material"><PaperclipIcon />Materiaal #{i}</a>
+				<a href={materiaal.url} class="material" target="_blank" rel="noopener noreferrer" download
+					><PaperclipIcon />Materiaal #{i}</a
+				>
 			{/each}
 		{/if}
 		<h3>Korte beschrijving</h3>
