@@ -10,3 +10,9 @@ query DetailPage($link: String!) {
 		...WerkvormDetail
 	}
 }
+
+query getTags {
+	tags {
+		...Tag
+	}
+}

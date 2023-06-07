@@ -21,10 +21,11 @@
 	</div>
 	{#if $tag}
 		<button
+			style:--tag-color={$tag.kleur?.hex}
 			on:click={() => {
 				goto('/');
-				tag.set('');
-			}}>{$tag} <CrossIcon /></button
+				tag.set(undefined);
+			}}>{$tag.titel} <CrossIcon /></button
 		>
 	{/if}
 	<div>
@@ -87,23 +88,23 @@
 		font-weight: 700;
 		padding: 0.75rem 1rem;
 		transition: 100ms background-color ease-out;
-		background-color: var(--color-hva-red);
+		background-color: var(--tag-color);
 		color: var(--color-white);
 		margin-bottom: 1rem;
 		cursor: pointer;
-		border: 2px solid var(--color-hva-red);
+		border: 2px solid var(--tag-color);
 
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		gap: .5rem;
+		gap: 0.5rem;
 	}
 
 	button:hover {
 		background-color: transparent;
-		color: var(--color-hva-red);
-		border: 2px solid var(--color-hva-red);
+		color: var(--tag-color);
+		border: 2px solid var(--tag-color);
 	}
 
 	@media (max-width: 55rem) {

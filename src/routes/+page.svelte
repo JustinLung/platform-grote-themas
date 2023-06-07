@@ -11,7 +11,8 @@
 	$: _tag = browser && $page.url.searchParams.get('tag');
 
 	$: {
-		_tag && tag.set(_tag);
+		const targetTag = _tag && data.tags.find((tagObj) => tagObj.waarde === _tag);
+		targetTag && tag.set(targetTag);
 	}
 </script>
 
