@@ -18,7 +18,7 @@
 
 <section>
 	<div class="sidebar-container">
-		<Sidebar />
+		<Sidebar tags={data.tags} />
 	</div>
 	<div>
 		<WerkvormSection werkvormen={data.werkvormen.werkvormen} />

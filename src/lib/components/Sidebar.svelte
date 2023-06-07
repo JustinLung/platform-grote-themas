@@ -6,6 +6,10 @@
 	import { page } from '$app/stores';
 	import CrossIcon from '$lib/icons/cross.svg?component';
 	import { goto } from '$app/navigation';
+	import type { TagFragment } from '$lib/graphql/generated/sdk';
+	import Tag from './Tag.svelte';
+
+	export let tags: TagFragment[];
 
 	function handleSearch(e: KeyboardEvent) {
 		const value = (e.target as HTMLInputElement).value;
@@ -28,27 +32,11 @@
 			}}>{$tag.titel} <CrossIcon /></button
 		>
 	{/if}
-	<div>
-		<Collapsable title="Onderwerp">
-			{#each onderwerpen as onderwerp}
-				<a href={onderwerp.link}>{onderwerp.title}</a>
-			{/each}
-		</Collapsable>
-		<Collapsable title="Focus / Intentie">
-			{#each focus as focus}
-				<a href={focus.link}>{focus.title}</a>
-			{/each}
-		</Collapsable>
-		<Collapsable title="Doel">
-			{#each doel as doel}
-				<a href={doel.link}>{doel.title}</a>
-			{/each}
-		</Collapsable>
-		<Collapsable title="Fase">
-			{#each fase as fase}
-				<a href={fase.link}>{fase.title}</a>
-			{/each}
-		</Collapsable>
+	<h2>Sorteren op categorie</h2>
+	<div class="tags">
+		{#each tags as tag}
+			<Tag color={tag.kleur?.hex} link="/?tag={tag.waarde}" title={tag.titel} />
+		{/each}
 	</div>
 </aside>
 
@@ -111,5 +99,10 @@
 		h2 {
 			font-size: 1.5rem;
 		}
+	}
+
+	.tags {
+		display: flex;
+		gap: 0.5rem;
 	}
 </style>
