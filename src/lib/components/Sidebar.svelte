@@ -4,6 +4,7 @@
 	import { onderwerpen, focus, doel, fase } from '$lib/data/categories';
 	import { searchterm, tag } from '../state/filter';
 	import { page } from '$app/stores';
+	import CrossIcon from '$lib/icons/cross.svg?component';
 	import { goto } from '$app/navigation';
 
 	function handleSearch(e: KeyboardEvent) {
@@ -23,7 +24,7 @@
 			on:click={() => {
 				goto('/');
 				tag.set('');
-			}}>x {$tag}</button
+			}}>{$tag} <CrossIcon /></button
 		>
 	{/if}
 	<div>
@@ -79,6 +80,30 @@
 	a {
 		color: var(--color-white);
 		text-decoration: none;
+	}
+
+	button {
+		all: unset;
+		font-weight: 700;
+		padding: 0.75rem 1rem;
+		transition: 100ms background-color ease-out;
+		background-color: var(--color-hva-red);
+		color: var(--color-white);
+		margin-bottom: 1rem;
+		cursor: pointer;
+		border: 2px solid var(--color-hva-red);
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: .5rem;
+	}
+
+	button:hover {
+		background-color: transparent;
+		color: var(--color-hva-red);
+		border: 2px solid var(--color-hva-red);
 	}
 
 	@media (max-width: 55rem) {
