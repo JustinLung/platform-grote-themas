@@ -2,15 +2,16 @@
 	import ArrowIcon from '$lib/icons/arrow.svg?component';
 	export let title: string;
 	export let description: string;
-	export let image: string = '/assets/images/placeholder.png';
+	export let image: { jpg: string; webp: string };
 	export let link: string;
 </script>
 
 <article>
 	<a href={link} data-sveltekit-preload-data="hover">
-		<figure>
-			<img src={image} alt={title} />
-		</figure>
+		<picture>
+			<source srcset={image.webp} type="image/webp" />
+			<img src={image.jpg} alt={title} />
+		</picture>
 	</a>
 	<section>
 		<h3>{title}</h3>
@@ -33,7 +34,8 @@
 		gap: 2rem;
 	}
 
-	figure {
+	picture {
+		display: block;
 		padding: 0;
 		margin: 0;
 		height: 20rem;
@@ -93,7 +95,7 @@
 			padding: 0 1rem;
 		}
 
-		figure {
+		picture {
 			width: 100%;
 		}
 	}

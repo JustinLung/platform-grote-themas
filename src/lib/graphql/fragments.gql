@@ -2,7 +2,20 @@ fragment Werkvorm on Werkvorm {
 	title
 	beschrijving
 	thumbnail {
-		url
+		jpg: url(
+			transformation: {
+				image: { resize: { width: 500, fit: clip } }
+				document: { output: { format: jpg } }
+				validateOptions: true
+			}
+		)
+		webp: url(
+			transformation: {
+				image: { resize: { width: 500, fit: clip } }
+				document: { output: { format: webp } }
+				validateOptions: true
+			}
+		)
 	}
 	tags {
 		... on Tag {

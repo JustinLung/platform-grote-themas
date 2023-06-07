@@ -21,7 +21,7 @@
 					title={werkvorm.title}
 					description={werkvorm.beschrijving}
 					link="/{werkvorm.link}"
-					image={werkvorm.thumbnail.url}
+					image={werkvorm.thumbnail}
 				>
 					{#each werkvorm.tags as tag}
 						<Tag title={tag.titel} link="/?tag={tag.waarde}" color={tag.kleur?.hex} />
