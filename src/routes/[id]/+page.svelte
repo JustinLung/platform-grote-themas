@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import AspectRatio from '$lib/components/AspectRatio.svelte';
 	import Tag from '$lib/components/Tag.svelte';
 	import Video from '$lib/components/Video.svelte';
