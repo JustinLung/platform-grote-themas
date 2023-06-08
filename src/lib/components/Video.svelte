@@ -7,16 +7,3 @@
 <video controls bind:this={video}>
 	<source {src} />
 </video>
-
-<style>
-	video {
-		width: 60%;
-		border-radius: .2rem;
-	}
-
-	@media (max-width: 55rem) {
-		video {
-			width: 100%;
-		}
-	}
-</style>

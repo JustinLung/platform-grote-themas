@@ -1,9 +1,23 @@
 <script lang="ts">
+	import AspectRatio from '$lib/components/AspectRatio.svelte';
 	import Tag from '$lib/components/Tag.svelte';
 	import Video from '$lib/components/Video.svelte';
 	import PaperclipIcon from '$lib/icons/paperclip.svg?component';
 
 	export let data;
+
+	async function getFiles(): Promise<Blob[]> {
+		const downloadLinks = data.materialen.map((m) => fetch(m.url));
+		const fullFilled = await Promise.all(downloadLinks);
+		return new Promise((resolve) => {
+			const blobs = fullFilled.map(async (link) => {
+				const blob = link.blob();
+				return blob;
+			});
+			const urls = Promise.all(blobs);
+			resolve(urls);
+		});
+	}
 </script>
 
 <section>
@@ -17,9 +31,16 @@
 		<span>{data.opleiding?.faculteit?.titel} - {data.opleiding?.titel}</span>
 		{#if data.materialen.length}
 			<h3>Download materialen</h3>
-			{#each data.materialen as materiaal, i}
-				<a href={materiaal.url} class="material"><PaperclipIcon />Materiaal #{i}</a>
-			{/each}
+
+			{#await getFiles()}
+				<p>Materiaal laden...</p>
+			{:then urls}
+				{#each urls as url, i}
+					<a download="materiaal-#{i}" href={window.URL.createObjectURL(url)} class="material"
+						><PaperclipIcon />Materiaal #{i}</a
+					>
+				{/each}
+			{/await}
 		{/if}
 		<h3>Korte beschrijving</h3>
 		<p>{data.beschrijving}</p>
@@ -29,7 +50,11 @@
 			{/each}
 		</div>
 	</div>
-	<Video src={data.video?.url} />
+	<div class="video">
+		<AspectRatio ratio={16 / 9}>
+			<Video src={data.video?.url} />
+		</AspectRatio>
+	</div>
 </section>
 
 <style>
@@ -37,6 +62,10 @@
 		padding: 2rem;
 		display: flex;
 		justify-content: space-between;
+	}
+
+	.video {
+		width: 60%;
 	}
 
 	h3 {
@@ -62,6 +91,9 @@
 		section {
 			flex-direction: column;
 			gap: 2rem;
+		}
+		.video {
+			width: 100%;
 		}
 	}
 </style>
