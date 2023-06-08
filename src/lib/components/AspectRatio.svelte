@@ -4,7 +4,7 @@
 	const aspect = (1 / ratio) * 100;
 </script>
 
-<div style="--aspect: {aspect}%">
+<div class="aspect" style="--aspect: {aspect}%">
 	<slot />
 </div>
 
@@ -13,7 +13,7 @@
 		position: relative;
 	}
 
-	div::after {
+	div::before {
 		content: '';
 		height: 0;
 		display: block;
