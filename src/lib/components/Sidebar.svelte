@@ -1,12 +1,9 @@
 <script lang="ts">
-	import Collapsable from './Collapsable.svelte';
-	import SearchIcon from '$lib/icons/search.svg?component';
-	import { onderwerpen, focus, doel, fase } from '$lib/data/categories';
-	import { searchterm, tag } from '../state/filter';
-	import { page } from '$app/stores';
-	import CrossIcon from '$lib/icons/cross.svg?component';
 	import { goto } from '$app/navigation';
 	import type { TagFragment } from '$lib/graphql/generated/sdk';
+	import CrossIcon from '$lib/icons/cross.svg?component';
+	import SearchIcon from '$lib/icons/search.svg?component';
+	import { searchterm, tags as tagStore } from '../state/filter';
 	import Tag from './Tag.svelte';
 
 	export let tags: TagFragment[];
@@ -23,19 +20,22 @@
 		<SearchIcon class="search-icon" />
 		<input on:keyup={handleSearch} type="search" placeholder="Zoek op werkvormen en thema's" />
 	</div>
-	{#if $tag}
-		<button
-			style:--tag-color={$tag.kleur?.hex}
-			on:click={() => {
-				goto('/');
-				tag.set(undefined);
-			}}>{$tag.titel} <CrossIcon /></button
-		>
+	{#if $tagStore.length}
+		{#each $tagStore as tagStoreEntry}
+			<button
+				style:--tag-color={tagStoreEntry.kleur?.hex}
+				on:click={() => {
+					tagStore.update((ts) => {
+						return ts.filter((t) => t.waarde !== tagStoreEntry.waarde);
+					});
+				}}>{tagStoreEntry.titel} <CrossIcon /></button
+			>
+		{/each}
 	{/if}
 	<h2>Sorteren op categorie</h2>
 	<div class="tags">
 		{#each tags as tag}
-			<Tag color={tag.kleur?.hex} link="/?tag={tag.waarde}" title={tag.titel} />
+			<Tag {tag} />
 		{/each}
 	</div>
 </aside>

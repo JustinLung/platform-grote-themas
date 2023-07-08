@@ -14,13 +14,9 @@
 		<a href="/" data-sveltekit-preload-data="hover">
 			<img src="/assets/images/logo.svg" alt="Hogeschool van Amsterdam" />
 		</a>
-		<nav>
-			<a href="https://www.hva.nl/" target="_blank" rel="noopener noreferrer">HvA</a> / Informatie /
-			<a href="/">Werkvormen & thema's</a>
-		</nav>
 		<h1>
 			{$page.url.pathname === '/'
-				? "Werkvormen & Thema's"
+				? "Kleine werkvormen voor grote thema's"
 				: werkvormTitle[0].toUpperCase() + werkvormTitle.slice(1, werkvormTitle.length)}
 		</h1>
 		<p>
@@ -44,10 +40,6 @@
 
 	div {
 		padding: 2rem;
-	}
-
-	nav {
-		padding: 1rem 0;
 	}
 
 	h1 {
