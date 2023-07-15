@@ -24,7 +24,7 @@
 					image={werkvorm.thumbnail}
 				>
 					{#each werkvorm.tags as tag}
-						<Tag title={tag.titel} link="/?tag={tag.waarde}" color={tag.kleur?.hex} />
+						<Tag {tag} />
 					{/each}
 				</Werkvorm>
 			{/each}
@@ -34,7 +34,7 @@
 
 <style>
 	h2 {
-		font-size: 2rem;
+		font-size: clamp(2rem, 7vw, 3rem);
 	}
 
 	div {

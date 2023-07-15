@@ -3,7 +3,7 @@
 	import WerkvormSection from '$lib/components/WerkvormSection.svelte';
 	import BackToTop from '$lib/components/BackToTop.svelte';
 	import { page } from '$app/stores';
-	import { tag } from '$lib/state/filter';
+	import { tags } from '$lib/state/filter';
 	import { browser } from '$app/environment';
 
 	export let data;
@@ -12,7 +12,7 @@
 
 	$: {
 		const targetTag = _tag && data.tags.find((tagObj) => tagObj.waarde === _tag);
-		targetTag && tag.set(targetTag);
+		targetTag && tags.set([targetTag]);
 	}
 </script>
 

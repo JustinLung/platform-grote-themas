@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ArrowIcon from '$lib/icons/arrow.svg?component';
 	export let title: string;
 	export let description: string;
 	export let image: { jpg: string; webp: string };
@@ -16,12 +15,6 @@
 	<section>
 		<h3>{title}</h3>
 		<p>{description}</p>
-		<a href={link} class="werkvorm-link" data-sveltekit-preload-data="hover"
-			><ArrowIcon />Bekijk werkvorm</a
-		>
-		<a href={link} class="werkvorm-link" data-sveltekit-preload-data="hover"
-			><ArrowIcon />Bekijk Introvideo</a
-		>
 		<div>
 			<slot />
 		</div>
